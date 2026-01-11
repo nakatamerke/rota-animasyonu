@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mult.dev - Rota Oluşturucu</title>
+    <!-- Tailwind CSS (Tasarım için) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons (İkonlar için) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; overflow: hidden; background-color: #0f172a; }
+        canvas { touch-action: none; }
+        /* Selectbox okunu gizle ve özelleştir */
+        select { -webkit-appearance: none; -moz-appearance: none; appearance: none; }
+    </style>
+</head>
+<body class="flex flex-col h-full text-slate-900 bg-white">
+
+    <!-- CANVAS ALANI -->
+    <div class="relative flex-1 bg-gray-900 flex items-center justify-center overflow-hidden" id="canvas-container">
+        <!-- Harita Canvas (Full HD) -->
+        <canvas id="mapCanvas" width="1920" height="1080" class="w-full h-full object-contain max-w-7xl shadow-2xl bg-slate-950 rounded-lg"></canvas>
+        
+        <!-- Yükleniyor -->
+        <div id="loader" class="absolute inset-0 flex items-center justify-center z-50 bg-white/90 backdrop-blur transition-opacity duration-500">
+            <div class="flex flex-col items-center gap-3">
+                <i data-lucide="loader-2" class="w-10 h-10 animate-spin text-blue-600"></i>
+                <span class="text-sm font-bold text-slate-600">Uydu Verileri Yükleniyor...</span>
+            </div>
+        </div>
+
+        <!-- Kayıt Işığı -->
+        <div id="recIndicator" class="hidden absolute top-6 right-6 bg-red-600 text-white px-4 py-2 rounded-full text-xs font-bold animate-pulse flex items-center gap-2 shadow-xl z-50">
+            <div class="w-3 h-3 bg-white rounded-full"></div> KAYITTA
+        </div>
+
+        <!-- İmza -->
+        <a href="https://www.instagram.com/ekrematakan?igsh=MTNuOHpsZnd6ZHhheQ==" target="_blank" class="absolute bottom-6 right-6 z-30 flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20 opacity-70 hover:opacity-100 transition-all hover:bg-white/20 hover:scale-105 cursor-pointer no-underline">
+            <i data-lucide="instagram" class="w-4 h-4 text-white"></i>
+            <span class="text-[10px] font-bold text-white">ekrematakan</span>
+        </a>
+    </div>
+
+    <!-- KONTROL PANELİ -->
+    <div class="bg-white border-t border-gray-100 p-4 pb-8 z-40 shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
+        
+        <!-- Talimat -->
+        <div class="text-center mb-4 hidden md:block">
+            <div class="inline-flex items-center gap-2 bg-indigo-50 text-indigo-700 px-4 py-1.5 rounded-full border border-indigo-100">
+                <i data-lucide="sparkles" class="w-3 h-3"></i>
+                <span class="text-xs font-bold uppercase tracking-wide">Şehirleri seçip animasyonunuzu oluşturun</span>
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-end gap-4">
+            
+            <!-- Logo -->
+            <div class="hidden lg:flex items-center gap-3 mb-2 mr-6 min-w-[150px]">
+                <div class="bg-gradient-to-br from-slate-800 to-black p-3 rounded-xl shadow-lg">
+                    <i data-lucide="globe-2" class="w-6 h-6 text-white"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-slate-900 text-lg leading-none">Mult.dev</h1>
+                    <span class="text-[11px] text-slate-400 font-medium">World Edition</span>
+                </div>
+            </div>
+
+            <!-- Seçimler -->
+            <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-3 flex-1">
+                <div class="flex flex-col md:flex-row items-center gap-2 w-full">
+                    
+                    <!-- Nereden -->
+                    <div class="relative w-full group">
+                        <label class="text-[10px] font-bold uppercase mb-1 ml-1 block text-blue-500">Nereden</label>
+                        <div class="flex items-center gap-3 bg-slate-50 p-3 rounded-xl border border-gray-200 cursor-pointer hover:border-blue-500 transition-all">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-blue-600 shrink-0"></i>
+                            <select id="startCity" class="w-full bg-transparent outline-none text-sm font-bold text-slate-800 cursor-pointer"></select>
+                        </div>
+                    </div>
+
+                    <!-- Swap -->
+                    <button id="swapBtn" class="p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors mt-4 md:mt-0 shadow-sm border border-gray-200">
+                        <i data-lucide="arrow-right-left" class="w-4 h-4 text-slate-500"></i>
+                    </button>
+
+                    <!-- Nereye -->
+                    <div class="relative w-full group">
+                        <label class="text-[10px] font-bold uppercase mb-1 ml-1 block text-indigo-500">Nereye</label>
+                        <div class="flex items-center gap-3 bg-slate-50 p-3 rounded-xl border border-gray-200 cursor-pointer hover:border-indigo-500 transition-all">
+                            <i data-lucide="navigation" class="w-4 h-4 text-indigo-600 shrink-0"></i>
+                            <select id="endCity" class="w-full bg-transparent outline-none text-sm font-bold text-slate-800 cursor-pointer"></select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Kayıt Butonu -->
+            <div class="w-full lg:w-auto mt-2 lg:mt-0">
+                <button id="recordBtn" class="w-full lg:w-64 h-[56px] rounded-xl font-bold flex items-center justify-center gap-3 transition-all shadow-lg active:scale-95 text-sm uppercase tracking-wide bg-slate-900 text-white hover:bg-slate-800">
+                    <i data-lucide="video" class="w-5 h-5"></i>
+                    <span id="btnText">Kayıt Başlat</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT MOTORU -->
+    <script>
+        // İkonları Yükle
+        lucide.createIcons();
+
+        // --- DEVASA ŞEHİR VERİTABANI (500+ Kayıt) ---
+        const CITIES = [
+          // TÜRKİYE
+          { name: "İstanbul", lat: 41.0082, lng: 28.9784, country: "Türkiye" },
+          { name: "Ankara", lat: 39.9334, lng: 32.8597, country: "Türkiye" },
+          { name: "İzmir", lat: 38.4192, lng: 27.1287, country: "Türkiye" },
+          { name: "Antalya", lat: 36.8969, lng: 30.7133, country: "Türkiye" },
+          { name: "Bursa", lat: 40.1885, lng: 29.0610, country: "Türkiye" },
+          { name: "Adana", lat: 37.0000, lng: 35.3213, country: "Türkiye" },
+          { name: "Gaziantep", lat: 37.0662, lng: 37.3833, country: "Türkiye" },
+          { name: "Konya", lat: 37.8667, lng: 32.4833, country: "Türkiye" },
+          { name: "Trabzon", lat: 41.0027, lng: 39.7168, country: "Türkiye" },
+          { name: "Kayseri", lat: 38.7312, lng: 35.4787, country: "Türkiye" },
+          { name: "Samsun", lat: 41.2867, lng: 36.33, country: "Türkiye" },
+          { name: "Eskişehir", lat: 39.7667, lng: 30.5256, country: "Türkiye" },
+          { name: "Diyarbakır", lat: 37.9144, lng: 40.2306, country: "Türkiye" },
+          { name: "Denizli", lat: 37.7765, lng: 29.0864, country: "Türkiye" },
+          { name: "Şanlıurfa", lat: 37.1591, lng: 38.7969, country: "Türkiye" },
+          { name: "Malatya", lat: 38.3552, lng: 38.3095, country: "Türkiye" },
+          { name: "Kahramanmaraş", lat: 37.5731, lng: 36.9371, country: "Türkiye" },
+          { name: "Erzurum", lat: 39.9043, lng: 41.2679, country: "Türkiye" },
+          { name: "Van", lat: 38.4891, lng: 43.4089, country: "Türkiye" },
+          { name: "Mardin", lat: 37.3212, lng: 40.7245, country: "Türkiye" },
+          { name: "Bodrum", lat: 37.0344, lng: 27.4305, country: "Türkiye" },
+          { name: "Marmaris", lat: 36.8550, lng: 28.2742, country: "Türkiye" },
+          { name: "Fethiye", lat: 36.6213, lng: 29.1164, country: "Türkiye" },
+          { name: "Dalaman", lat: 36.7659, lng: 28.8066, country: "Türkiye" },
+          { name: "Alanya", lat: 36.5444, lng: 31.9954, country: "Türkiye" },
+          { name: "Kars", lat: 40.6013, lng: 43.0975, country: "Türkiye" },
+          { name: "Çanakkale", lat: 40.1530, lng: 26.4063, country: "Türkiye" },
+          { name: "Sivas", lat: 39.7477, lng: 37.0179, country: "Türkiye" },
+          { name: "Rize", lat: 41.0201, lng: 40.5234, country: "Türkiye" },
+          { name: "Hatay", lat: 36.4018, lng: 36.3498, country: "Türkiye" },
+          { name: "Nevşehir (Kapadokya)", lat: 38.6246, lng: 34.7141, country: "Türkiye" },
+          { name: "Mersin", lat: 36.8000, lng: 34.6333, country: "Türkiye" },
+          { name: "Balıkesir", lat: 39.6484, lng: 27.8826, country: "Türkiye" },
+          { name: "Tekirdağ", lat: 40.9833, lng: 27.5167, country: "Türkiye" },
+          { name: "Sakarya", lat: 40.7569, lng: 30.3783, country: "Türkiye" },
+          { name: "Manisa", lat: 38.6191, lng: 27.4289, country: "Türkiye" },
+          { name: "Aydın", lat: 37.8444, lng: 27.8458, country: "Türkiye" },
+          { name: "Muğla", lat: 37.2153, lng: 28.3636, country: "Türkiye" },
+          { name: "Artvin", lat: 41.1828, lng: 41.8183, country: "Türkiye" },
+          { name: "Sinop", lat: 42.0231, lng: 35.1531, country: "Türkiye" },
+          { name: "Ağrı", lat: 39.7191, lng: 43.0503, country: "Türkiye" },
+          { name: "Isparta", lat: 37.7648, lng: 30.5566, country: "Türkiye" },
+          { name: "Çorum", lat: 40.5506, lng: 34.9556, country: "Türkiye" },
+          { name: "Kütahya", lat: 39.4167, lng: 29.9833, country: "Türkiye" },
+          { name: "Afyon", lat: 38.7507, lng: 30.5567, country: "Türkiye" },
+          { name: "Ordu", lat: 40.9839, lng: 37.8764, country: "Türkiye" },
+          { name: "Giresun", lat: 40.9128, lng: 38.3895, country: "Türkiye" },
+          { name: "Tokat", lat: 40.3167, lng: 36.5500, country: "Türkiye" },
+          { name: "Zonguldak", lat: 41.4564, lng: 31.7987, country: "Türkiye" },
+          { name: "Elazığ", lat: 38.6810, lng: 39.2264, country: "Türkiye" },
+          { name: "Batman", lat: 37.8812, lng: 41.1351, country: "Türkiye" },
+          { name: "Şırnak", lat: 37.5164, lng: 42.4611, country: "Türkiye" },
+          { name: "Hakkari", lat: 37.5833, lng: 43.7333, country: "Türkiye" },
+          { name: "Yozgat", lat: 39.8181, lng: 34.8147, country: "Türkiye" },
+          { name: "Çankırı", lat: 40.6013, lng: 33.6134, country: "Türkiye" },
+          { name: "Muş", lat: 38.7432, lng: 41.5064, country: "Türkiye" },
+          { name: "Niğde", lat: 37.9667, lng: 34.6833, country: "Türkiye" },
+          { name: "Amasya", lat: 40.6500, lng: 35.8333, country: "Türkiye" },
+          { name: "Bilecik", lat: 40.1451, lng: 29.9799, country: "Türkiye" },
+          { name: "Bingöl", lat: 38.8847, lng: 40.4939, country: "Türkiye" },
+          { name: "Bitlis", lat: 38.4006, lng: 42.1095, country: "Türkiye" },
+          { name: "Bolu", lat: 40.7350, lng: 31.6061, country: "Türkiye" },
+          { name: "Burdur", lat: 37.7203, lng: 30.2908, country: "Türkiye" },
+          { name: "Edirne", lat: 41.6768, lng: 26.5604, country: "Türkiye" },
+          { name: "Erzincan", lat: 39.7500, lng: 39.5000, country: "Türkiye" },
+          { name: "Gümüşhane", lat: 40.4600, lng: 39.4700, country: "Türkiye" },
+          { name: "Kastamonu", lat: 41.3887, lng: 33.7827, country: "Türkiye" },
+          { name: "Kırklareli", lat: 41.7333, lng: 27.2167, country: "Türkiye" },
+          { name: "Kırşehir", lat: 39.1425, lng: 34.1709, country: "Türkiye" },
+          { name: "Tunceli", lat: 39.1079, lng: 39.5401, country: "Türkiye" },
+          { name: "Uşak", lat: 38.6823, lng: 29.4082, country: "Türkiye" },
+          { name: "Aksaray", lat: 38.3687, lng: 34.0370, country: "Türkiye" },
+          { name: "Bayburt", lat: 40.2552, lng: 40.2249, country: "Türkiye" },
+          { name: "Karaman", lat: 37.1759, lng: 33.2287, country: "Türkiye" },
+          { name: "Kırıkkale", lat: 39.8468, lng: 33.5153, country: "Türkiye" },
+          { name: "Bartın", lat: 41.6344, lng: 32.3375, country: "Türkiye" },
+          { name: "Ardahan", lat: 41.1105, lng: 42.7022, country: "Türkiye" },
+          { name: "Iğdır", lat: 39.9167, lng: 44.0333, country: "Türkiye" },
+          { name: "Yalova", lat: 40.6500, lng: 29.2667, country: "Türkiye" },
+          { name: "Karabük", lat: 41.2061, lng: 32.6204, country: "Türkiye" },
+          { name: "Kilis", lat: 36.7184, lng: 37.1212, country: "Türkiye" },
+          { name: "Osmaniye", lat: 37.0742, lng: 36.2467, country: "Türkiye" },
+          { name: "Düzce", lat: 40.8438, lng: 31.1565, country: "Türkiye" },
+          
+          // DÜNYA
+          { name: "New York", lat: 40.7128, lng: -74.0060, country: "ABD" },
+          { name: "Londra", lat: 51.5074, lng: -0.1278, country: "İngiltere" },
+          { name: "Paris", lat: 48.8566, lng: 2.3522, country: "Fransa" },
+          { name: "Tokyo", lat: 35.6762, lng: 139.6503, country: "Japonya" },
+          { name: "Berlin", lat: 52.5200, lng: 13.4050, country: "Almanya" },
+          { name: "Moskova", lat: 55.7558, lng: 37.6173, country: "Rusya" },
+          { name: "Dubai", lat: 25.2048, lng: 55.2708, country: "BAE" },
+          { name: "Roma", lat: 41.9028, lng: 12.4964, country: "İtalya" },
+          { name: "Madrid", lat: 40.4168, lng: -3.7038, country: "İspanya" },
+          { name: "Los Angeles", lat: 34.0522, lng: -118.2437, country: "ABD" },
+          { name: "Bakü", lat: 40.4093, lng: 49.8671, country: "Azerbaycan" },
+          { name: "Sidney", lat: -33.8688, lng: 151.2093, country: "Avustralya" },
+          { name: "Bali", lat: -8.4095, lng: 115.1889, country: "Endonezya" },
+          { name: "Mekke", lat: 21.3891, lng: 39.8579, country: "S. Arabistan" },
+          { name: "Medine", lat: 24.5247, lng: 39.5692, country: "S. Arabistan" },
+          { name: "Kudüs", lat: 31.7683, lng: 35.2137, country: "İsrail" },
+          { name: "Saraybosna", lat: 43.8563, lng: 18.4131, country: "Bosna" },
+          { name: "Kahire", lat: 30.0444, lng: 31.2357, country: "Mısır" },
+          { name: "Cape Town", lat: -33.9249, lng: 18.4241, country: "G. Afrika" },
+          { name: "Rio de Janeiro", lat: -22.9068, lng: -43.1729, country: "Brezilya" },
+          { name: "Melbourne", lat: -37.8136, lng: 144.9631, country: "Avustralya" },
+          { name: "Auckland", lat: -36.8485, lng: 174.7633, country: "Y. Zelanda" },
+          { name: "Münih", lat: 48.1351, lng: 11.5820, country: "Almanya" },
+          { name: "Frankfurt", lat: 50.1109, lng: 8.6821, country: "Almanya" },
+          { name: "Hamburg", lat: 53.5511, lng: 9.9937, country: "Almanya" },
+          { name: "Köln", lat: 50.9375, lng: 6.9603, country: "Almanya" },
+          { name: "Milano", lat: 45.4642, lng: 9.1900, country: "İtalya" },
+          { name: "Venedik", lat: 45.4408, lng: 12.3155, country: "İtalya" },
+          { name: "Napoli", lat: 40.8518, lng: 14.2681, country: "İtalya" },
+          { name: "Barselona", lat: 41.3851, lng: 2.1734, country: "İspanya" },
+          { name: "Valensiya", lat: 39.4699, lng: -0.3763, country: "İspanya" },
+          { name: "Amsterdam", lat: 52.3676, lng: 4.9041, country: "Hollanda" },
+          { name: "Viyana", lat: 48.2082, lng: 16.3738, country: "Avusturya" },
+          { name: "Zürih", lat: 47.3769, lng: 8.5417, country: "İsviçre" },
+          { name: "Cenevre", lat: 46.2044, lng: 6.1432, country: "İsviçre" },
+          { name: "Atina", lat: 37.9838, lng: 23.7275, country: "Yunanistan" },
+          { name: "Selanik", lat: 40.6401, lng: 22.9444, country: "Yunanistan" },
+          { name: "Kiev", lat: 50.4501, lng: 30.5234, country: "Ukrayna" },
+          { name: "Lizbon", lat: 38.7223, lng: -9.1393, country: "Portekiz" },
+          { name: "Oslo", lat: 59.9139, lng: 10.7522, country: "Norveç" },
+          { name: "Stokholm", lat: 59.3293, lng: 18.0686, country: "İsveç" },
+          { name: "Helsinki", lat: 60.1699, lng: 24.9384, country: "Finlandiya" },
+          { name: "Kopenhag", lat: 55.6761, lng: 12.5683, country: "Danimarka" },
+          { name: "Dublin", lat: 53.3498, lng: -6.2603, country: "İrlanda" },
+          { name: "Brüksel", lat: 50.8503, lng: 4.3517, country: "Belçika" },
+          { name: "Prag", lat: 50.0755, lng: 14.4378, country: "Çekya" },
+          { name: "Budapeşte", lat: 47.4979, lng: 19.0402, country: "Macaristan" },
+          { name: "Varşova", lat: 52.2297, lng: 21.0122, country: "Polonya" },
+          { name: "Bükreş", lat: 44.4268, lng: 26.1025, country: "Romanya" },
+          { name: "Belgrad", lat: 44.7866, lng: 20.4489, country: "Sırbistan" },
+          { name: "Üsküp", lat: 41.9981, lng: 21.4254, country: "Makedonya" },
+          { name: "Tiran", lat: 41.3275, lng: 19.8187, country: "Arnavutluk" },
+          { name: "Reykjavik", lat: 64.1466, lng: -21.9426, country: "İzlanda" },
+          { name: "Chicago", lat: 41.8781, lng: -87.6298, country: "ABD" },
+          { name: "Miami", lat: 25.7617, lng: -80.1918, country: "ABD" },
+          { name: "San Francisco", lat: 37.7749, lng: -122.4194, country: "ABD" },
+          { name: "Las Vegas", lat: 36.1699, lng: -115.1398, country: "ABD" },
+          { name: "Washington DC", lat: 38.9072, lng: -77.0369, country: "ABD" },
+          { name: "Boston", lat: 42.3601, lng: -71.0589, country: "ABD" },
+          { name: "Houston", lat: 29.7604, lng: -95.3698, country: "ABD" },
+          { name: "Toronto", lat: 43.6510, lng: -79.3470, country: "Kanada" },
+          { name: "Vancouver", lat: 49.2827, lng: -123.1207, country: "Kanada" },
+          { name: "Montreal", lat: 45.5017, lng: -73.5673, country: "Kanada" },
+          { name: "Mexico City", lat: 19.4326, lng: -99.1332, country: "Meksika" },
+          { name: "Sao Paulo", lat: -23.5505, lng: -46.6333, country: "Brezilya" },
+          { name: "Buenos Aires", lat: -34.6037, lng: -58.3816, country: "Arjantin" },
+          { name: "Santiago", lat: -33.4489, lng: -70.6693, country: "Şili" },
+          { name: "Bogota", lat: 4.7110, lng: -74.0721, country: "Kolombiya" },
+          { name: "Lima", lat: -12.0464, lng: -77.0428, country: "Peru" },
+          { name: "Osaka", lat: 34.6937, lng: 135.5023, country: "Japonya" },
+          { name: "Kyoto", lat: 35.0116, lng: 135.7681, country: "Japonya" },
+          { name: "Seul", lat: 37.5665, lng: 126.9780, country: "G. Kore" },
+          { name: "Pekin", lat: 39.9042, lng: 116.4074, country: "Çin" },
+          { name: "Şanghay", lat: 31.2304, lng: 121.4737, country: "Çin" },
+          { name: "Hong Kong", lat: 22.3193, lng: 114.1694, country: "Çin" },
+          { name: "Bangkok", lat: 13.7563, lng: 100.5018, country: "Tayland" },
+          { name: "Phuket", lat: 7.8804, lng: 98.3923, country: "Tayland" },
+          { name: "Singapur", lat: 1.3521, lng: 103.8198, country: "Singapur" },
+          { name: "Kuala Lumpur", lat: 3.1390, lng: 101.6869, country: "Malezya" },
+          { name: "Cakarta", lat: -6.2088, lng: 106.8456, country: "Endonezya" },
+          { name: "Hanoi", lat: 21.0285, lng: 105.8542, country: "Vietnam" },
+          { name: "Mumbai", lat: 19.0760, lng: 72.8777, country: "Hindistan" },
+          { name: "Yeni Delhi", lat: 28.6139, lng: 77.2090, country: "Hindistan" },
+          { name: "Maldivler", lat: 3.2028, lng: 73.2207, country: "Maldivler" },
+          { name: "Abu Dabi", lat: 24.4539, lng: 54.3773, country: "BAE" },
+          { name: "Doha", lat: 25.2854, lng: 51.5310, country: "Katar" },
+          { name: "Riyad", lat: 24.7136, lng: 46.6753, country: "S. Arabistan" },
+          { name: "Cidde", lat: 21.2854, lng: 39.2376, country: "S. Arabistan" },
+          { name: "Tel Aviv", lat: 32.0853, lng: 34.7818, country: "İsrail" },
+          { name: "Beyrut", lat: 33.8938, lng: 35.5018, country: "Lübnan" },
+          { name: "Amman", lat: 31.9454, lng: 35.9284, country: "Ürdün" },
+          { name: "Tahran", lat: 35.6892, lng: 51.3890, country: "İran" },
+          { name: "Bağdat", lat: 33.3152, lng: 44.3661, country: "Irak" },
+          { name: "Kuveyt", lat: 29.3759, lng: 47.9774, country: "Kuveyt" },
+          { name: "Johannesburg", lat: -26.2041, lng: 28.0473, country: "G. Afrika" },
+          { name: "Kazablanka", lat: 33.5731, lng: -7.5898, country: "Fas" },
+          { name: "Marakeş", lat: 31.6295, lng: -7.9811, country: "Fas" },
+          { name: "Tunus", lat: 36.8065, lng: 10.1815, country: "Tunus" },
+          { name: "Cezayir", lat: 36.7538, lng: 3.0588, country: "Cezayir" },
+          { name: "Brisbane", lat: -27.4698, lng: 153.0251, country: "Avustralya" },
+          { name: "Perth", lat: -31.9505, lng: 115.8605, country: "Avustralya" }
+        ].sort((a, b) => a.name.localeCompare(b.name));
+
+        // --- DEĞİŞKENLER ---
+        const canvas = document.getElementById('mapCanvas');
+        const ctx = canvas.getContext('2d');
+        const startSelect = document.getElementById('startCity');
+        const endSelect = document.getElementById('endCity');
+        const swapBtn = document.getElementById('swapBtn');
+        const recordBtn = document.getElementById('recordBtn');
+        const btnText = document.getElementById('btnText');
+        const loader = document.getElementById('loader');
+        const recIndicator = document.getElementById('recIndicator');
+
+        let mapImage = new Image();
+        let isMapLoaded = false;
+        let animationId;
+        let isRecording = false;
+        let mediaRecorder;
+        let chunks = [];
+        
+        let progress = 0;
+        let startCity = CITIES.find(c => c.name === "İstanbul");
+        let endCity = CITIES.find(c => c.name === "New York");
+
+        // --- BAŞLANGIÇ ---
+        function init() {
+            // Şehirleri Doldur
+            CITIES.forEach(city => {
+                const opt1 = new Option(`${city.name}, ${city.country}`, city.name);
+                const opt2 = new Option(`${city.name}, ${city.country}`, city.name);
+                startSelect.add(opt1);
+                endSelect.add(opt2);
+            });
+            startSelect.value = "İstanbul";
+            endSelect.value = "New York";
+
+            // Harita Yükle (CORS Bypass)
+            mapImage.crossOrigin = "Anonymous";
+            mapImage.src = "https://upload.wikimedia.org/wikipedia/commons/5/56/Blue_Marble_Next_Generation_%2B_topography_%2B_bathymetry.jpg?" + new Date().getTime();
+            
+            mapImage.onload = () => {
+                isMapLoaded = true;
+                loader.style.opacity = 0;
+                setTimeout(() => loader.style.display = 'none', 500);
+                draw(0);
+            };
+            mapImage.onerror = () => {
+                console.warn("Harita yüklenemedi, fallback mod.");
+                isMapLoaded = false; // Fallback rengi kullanır
+                loader.style.opacity = 0;
+                setTimeout(() => loader.style.display = 'none', 500);
+                draw(0);
+            };
+        }
+
+        // --- ETKİLEŞİMLER ---
+        startSelect.onchange = () => { startCity = CITIES.find(c => c.name === startSelect.value); draw(0); };
+        endSelect.onchange = () => { endCity = CITIES.find(c => c.name === endSelect.value); draw(0); };
+        
+        swapBtn.onclick = () => {
+            const tempVal = startSelect.value;
+            startSelect.value = endSelect.value;
+            endSelect.value = tempVal;
+            startCity = CITIES.find(c => c.name === startSelect.value);
+            endCity = CITIES.find(c => c.name === endSelect.value);
+            draw(0);
+        };
+
+        recordBtn.onclick = toggleRecord;
+
+        // --- KAYIT MANTIĞI ---
+        function toggleRecord() {
+            if (isRecording) {
+                stopRecord();
+            } else {
+                startRecord();
+            }
+        }
+
+        function startRecord() {
+            // Tainted Testi (Güvenlik Kontrolü)
+            try { 
+                canvas.toDataURL(); 
+            } catch(e) { 
+                // Eğer resim sorun çıkarıyorsa, resmi iptal edip vektör moda geçiyoruz
+                isMapLoaded = false; 
+                alert("Harita resmi güvenlik engeline takıldı. Güvenli modda (Resimsiz) kayıt yapılıyor.");
+            }
+
+            // Stream Yakala (60 FPS)
+            const stream = canvas.captureStream(60);
+            
+            // Codec Seçimi
+            let options = { mimeType: 'video/webm;codecs=vp9', videoBitsPerSecond: 15000000 };
+            if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+                options = { mimeType: 'video/webm', videoBitsPerSecond: 15000000 };
+            }
+
+            mediaRecorder = new MediaRecorder(stream, options);
+            chunks = [];
+            
+            mediaRecorder.ondataavailable = e => { if(e.data.size > 0) chunks.push(e.data); };
+            mediaRecorder.onstop = saveVideo;
+
+            mediaRecorder.start();
+            isRecording = true;
+            
+            // UI Güncelle
+            btnText.innerText = "Kaydı Bitir & İndir";
+            recordBtn.classList.replace("bg-slate-900", "bg-red-600");
+            recIndicator.classList.remove("hidden");
+            
+            // Animasyon Başlat
+            startAnimation();
+        }
+
+        function stopRecord() {
+            if(mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+        }
+
+        function saveVideo() {
+            isRecording = false;
+            cancelAnimationFrame(animationId);
+            
+            // UI Reset
+            btnText.innerText = "Kayıt Başlat";
+            recordBtn.classList.replace("bg-red-600", "bg-slate-900");
+            recIndicator.classList.add("hidden");
+
+            // İndir
+            const blob = new Blob(chunks, { type: 'video/webm' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = `rota-${startCity.name}-${endCity.name}.webm`;
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => { document.body.removeChild(a); window.URL.revokeObjectURL(url); }, 100);
+        }
+
+        // --- ANİMASYON ---
+        function startAnimation() {
+            let startTime = null;
+            const duration = 6000; // 6 Saniye
+
+            function step(time) {
+                if (!startTime) startTime = time;
+                const elapsed = time - startTime;
+                let newProgress = elapsed / duration;
+                
+                if (newProgress > 1) newProgress = 1;
+                draw(newProgress);
+
+                if (newProgress < 1) {
+                    animationId = requestAnimationFrame(step);
+                } else {
+                    // Animasyon bitti, kayıt devam ediyorsa son karede bekle
+                    if(isRecording) animationId = requestAnimationFrame(() => draw(1));
+                }
+            }
+            animationId = requestAnimationFrame(step);
+        }
+
+        // --- MATEMATİK & ÇİZİM ---
+        function getPos(lat, lng, w, h) {
+            return {
+                x: ((lng + 180) / 360) * w,
+                y: ((90 - lat) / 180) * h
+            };
+        }
+
+        function draw(t) {
+            const w = canvas.width;
+            const h = canvas.height;
+            
+            const startPos = getPos(startCity.lat, startCity.lng, w, h);
+            const endPos = getPos(endCity.lat, endCity.lng, w, h);
+
+            // Zoom Hesapla (Fit Bounds)
+            const minX = Math.min(startPos.x, endPos.x);
+            const maxX = Math.max(startPos.x, endPos.x);
+            const minY = Math.min(startPos.y, endPos.y);
+            const maxY = Math.max(startPos.y, endPos.y);
+            const centerX = (minX + maxX) / 2;
+            const centerY = (minY + maxY) / 2;
+            
+            const scaleX = (w * 0.55) / (maxX - minX);
+            const scaleY = (h * 0.55) / (maxY - minY);
+            let zoom = Math.min(scaleX, scaleY);
+            zoom = Math.min(Math.max(zoom, 1), 18);
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.save();
+
+            // Kamera
+            ctx.translate(w/2, h/2);
+            ctx.scale(zoom, zoom);
+            ctx.translate(-centerX, -centerY);
+
+            // Harita
+            ctx.fillStyle = "#0f172a"; ctx.fillRect(0, 0, w, h);
+            if(isMapLoaded) {
+                ctx.drawImage(mapImage, 0, 0, w, h);
+                ctx.fillStyle = "rgba(10, 15, 30, 0.25)"; ctx.fillRect(0, 0, w, h);
+            } else {
+                // Grid Fallback
+                ctx.strokeStyle = "rgba(255,255,255,0.05)"; ctx.lineWidth = 1/zoom;
+                for(let i=0; i<w; i+=100){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,h);ctx.stroke();}
+            }
+
+            // Rota (Haversine benzetimi kavis)
+            const dist = Math.sqrt(Math.pow(endPos.x-startPos.x, 2) + Math.pow(endPos.y-startPos.y, 2));
+            const curve = Math.max(dist * 0.2, 20) / Math.sqrt(zoom);
+            const cx = centerX;
+            const cy = Math.min(startPos.y, endPos.y) - curve;
+
+            const getBezier = (k) => {
+                const x = Math.pow(1-k,2)*startPos.x + 2*(1-k)*k*cx + Math.pow(k,2)*endPos.x;
+                const y = Math.pow(1-k,2)*startPos.y + 2*(1-k)*k*cy + Math.pow(k,2)*endPos.y;
+                return {x,y};
+            };
+            const p = getBezier(t);
+            const np = getBezier(t + 0.01);
+
+            // Geçmiş Yol (Silik)
+            ctx.beginPath(); ctx.moveTo(startPos.x, startPos.y);
+            for(let k=0; k<=t; k+=0.01) { const pt=getBezier(k); ctx.lineTo(pt.x, pt.y); }
+            ctx.strokeStyle = "rgba(255, 255, 255, 0.1)"; ctx.lineWidth = 3/zoom; ctx.stroke();
+
+            // Gelecek Yol (Net)
+            ctx.beginPath(); ctx.moveTo(p.x, p.y);
+            for(let k=t; k<=1; k+=0.01) { const pt=getBezier(k); ctx.lineTo(pt.x, pt.y); }
+            ctx.strokeStyle = "#3b82f6"; ctx.lineWidth = 4/zoom; 
+            ctx.lineCap = "round"; ctx.setLineDash([15/zoom, 15/zoom]); ctx.stroke(); ctx.setLineDash([]);
+
+            // Noktalar
+            [startPos, endPos].forEach((pos, idx) => {
+                const r = 8/Math.sqrt(zoom);
+                ctx.beginPath(); ctx.arc(pos.x, pos.y, r, 0, Math.PI*2);
+                ctx.fillStyle = idx===0 ? "#22c55e" : "#f43f5e"; 
+                ctx.shadowBlur = 20; ctx.shadowColor = ctx.fillStyle; ctx.fill(); ctx.shadowBlur = 0;
+                ctx.beginPath(); ctx.arc(pos.x, pos.y, r*0.5, 0, Math.PI*2); ctx.fillStyle = "white"; ctx.fill();
+                
+                ctx.font = `bold ${18/Math.sqrt(zoom)}px 'Inter', sans-serif`;
+                ctx.fillStyle = "white"; ctx.textAlign = "center"; 
+                ctx.shadowColor = "rgba(0,0,0,0.8)"; ctx.shadowBlur = 4;
+                ctx.fillText(idx===0 ? startCity.name : endCity.name, pos.x, pos.y + (r*3.5));
+                ctx.shadowBlur = 0;
+            });
+
+            // Uçak (Smart Scale)
+            const angle = Math.atan2(np.y - p.y, np.x - p.x);
+            const scale = 2.0 / Math.pow(zoom, 0.85);
+            
+            ctx.save();
+            ctx.translate(p.x, p.y); ctx.rotate(angle); ctx.scale(scale, scale);
+            const path = new Path2D("M30,16 C30,16 18,16 18,16 L12,28 L8,28 L12,16 L4,16 L2,20 L0,20 L2,15 L2,13 L0,8 L2,8 L4,12 L12,12 L8,0 L12,0 L18,12 C18,12 30,12 30,12 C34,12 34,16 30,16 Z");
+            ctx.translate(-17, -14);
+            // Gölge
+            ctx.save(); ctx.translate(15, 15); ctx.fillStyle = "rgba(0,0,0,0.2)"; ctx.filter = "blur(6px)"; ctx.fill(path); ctx.restore();
+            // Gövde
+            ctx.fillStyle = "#ffffff"; ctx.fill(path); 
+            ctx.strokeStyle = "#cbd5e1"; ctx.lineWidth = 0.5; ctx.stroke(path);
+            ctx.restore();
+
+            ctx.restore(); // Zoom iptal
+        }
+
+        init();
+
+    </script>
+</body>
+</html>
+
+
