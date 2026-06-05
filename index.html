@@ -11,7 +11,7 @@
   <meta name="theme-color" content="#0a0a0a" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     :root{
@@ -20,20 +20,35 @@
       --dim:#565247;--white:#f4efe3;--shadow:rgba(0,0,0,.55);
     }
     html{scroll-behavior:smooth}
-    body{background:var(--bg);color:var(--text);font-family:"DM Mono",monospace;overflow-x:hidden;min-height:100vh}
+    body{background:var(--bg);color:var(--text);font-family:"Inter",sans-serif;overflow-x:hidden;min-height:100vh}
     body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 75% 20%,rgba(201,168,76,.12),transparent 28%),radial-gradient(circle at 20% 80%,rgba(201,168,76,.06),transparent 35%),linear-gradient(180deg,rgba(255,255,255,.02),transparent 25%);z-index:-2}
     body:after{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:56px 56px;mask-image:linear-gradient(to bottom,black,transparent 85%);z-index:-1}
     a{color:inherit;text-decoration:none}
     .loader{position:fixed;inset:0;background:#050505;z-index:9999;display:grid;place-items:center;animation:fadeOut .8s ease 1.75s forwards}
-    .loader-inner{text-align:center;animation:rise .9s ease both}.loader-logo{width:86px;height:86px;object-fit:contain;margin-bottom:22px;filter:drop-shadow(0 0 18px rgba(201,168,76,.22))}.loader-title{font-family:"Bebas Neue";font-size:40px;letter-spacing:8px;color:var(--white)}.loader-sub{font-size:9px;letter-spacing:4px;color:var(--gold);margin-top:8px;text-transform:uppercase}
+    .loader-inner{text-align:center;animation:rise .9s ease both}.loader-logo{width:86px;height:86px;object-fit:contain;margin-bottom:22px;filter:drop-shadow(0 0 18px rgba(201,168,76,.22))}.loader-title{font-family:"Bebas Neue",sans-serif;font-size:40px;letter-spacing:8px;color:var(--white)}.loader-sub{font-size:9px;letter-spacing:4px;color:var(--gold);margin-top:8px;text-transform:uppercase}
     @keyframes fadeOut{to{opacity:0;visibility:hidden}}@keyframes rise{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
-    .nav{position:fixed;top:0;left:0;right:0;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 34px;background:rgba(8,8,7,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);z-index:1000}.brand{display:flex;align-items:center;gap:14px}.brand img{width:42px;height:42px;object-fit:contain}.brand span{font-family:"Bebas Neue";font-size:24px;letter-spacing:4px;color:var(--white)}.nav-links{display:flex;align-items:center;gap:2px}.nav-links a,.lang-switch button{border:1px solid transparent;background:transparent;color:var(--muted);font-family:"DM Mono";font-size:10px;letter-spacing:1.8px;text-transform:uppercase;padding:10px 13px;cursor:pointer;transition:.25s}.nav-links a:hover,.lang-switch button:hover{color:var(--gold);border-color:var(--line2)}.lang-switch{display:flex;border-left:1px solid var(--line);padding-left:12px;margin-left:8px}.lang-switch button.active{background:var(--gold);color:#090908;border-color:var(--gold)}
-    section{position:relative}.container{max-width:1180px;margin:0 auto;padding:0 28px}.hero{min-height:100vh;display:grid;grid-template-columns:.9fr 1.1fr;padding-top:68px;border-bottom:1px solid var(--line)}.hero-photo{position:relative;min-height:calc(100vh - 68px);border-right:1px solid var(--line);overflow:hidden;background:#111}.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(10%) contrast(1.08) brightness(.82)}.hero-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 2%,transparent 48%),linear-gradient(to right,rgba(0,0,0,.2),transparent 50%)}.photo-badge{position:absolute;left:30px;bottom:30px;border:1px solid rgba(201,168,76,.45);background:rgba(8,8,7,.72);backdrop-filter:blur(12px);padding:16px 18px;z-index:2}.photo-badge small{display:block;color:var(--gold);font-size:9px;letter-spacing:2.4px;text-transform:uppercase;margin-bottom:8px}.photo-badge span{font-family:"Cormorant Garamond";font-size:24px;color:var(--white)}.hero-content{display:flex;align-items:center;padding:72px 8vw}.eyebrow{font-size:10px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:22px}.hero h1{font-family:"Bebas Neue";font-size:clamp(72px,10vw,148px);line-height:.86;letter-spacing:4px;color:var(--white);text-shadow:0 24px 65px rgba(0,0,0,.45)}.hero h1 span{display:block;color:transparent;-webkit-text-stroke:1px var(--gold);opacity:.8}.roles{display:grid;gap:8px;margin:26px 0 30px}.roles div{font-family:"DM Mono";font-size:12px;letter-spacing:3px;color:var(--muted);text-transform:uppercase}.quote{font-family:"Cormorant Garamond";font-size:clamp(24px,3vw,38px);font-style:italic;line-height:1.28;color:var(--text);max-width:680px;border-left:2px solid var(--gold);padding-left:22px;margin-bottom:32px}.cta-row{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid var(--line2);padding:13px 18px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text);transition:.25s}.btn:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}.btn.gold{background:var(--gold);color:#090908;border-color:var(--gold);font-weight:500}.btn.gold:hover{box-shadow:0 0 26px rgba(201,168,76,.2);color:#090908}
-    .section-pad{padding:96px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:38px;border-bottom:1px solid var(--line);padding-bottom:22px}.label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}.section-head h2{font-family:"Bebas Neue";font-size:56px;letter-spacing:3px;color:var(--white);font-weight:400}.section-head p{max-width:440px;color:var(--muted);font-size:12px;line-height:1.7}.about-grid{display:grid;grid-template-columns:280px 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}.stats{background:var(--panel);display:grid}.stat{padding:26px;border-bottom:1px solid var(--line)}.stat:last-child{border-bottom:none}.stat strong{display:block;font-family:"Cormorant Garamond";font-size:44px;font-weight:300;color:var(--gold);line-height:1}.stat span{display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-top:8px}.bio-box{background:rgba(17,17,15,.75);padding:42px}.bio-text{display:none}.bio-text.active{display:block}.bio-text h3{font-family:"Cormorant Garamond";font-size:38px;font-weight:300;color:var(--white);margin-bottom:22px}.bio-text p{font-family:"Cormorant Garamond";font-size:20px;line-height:1.76;color:var(--text);margin-bottom:18px}.bio-text .final-quote{margin-top:30px;padding:24px;border-left:2px solid var(--gold);background:rgba(201,168,76,.06);font-style:italic;color:var(--white)}.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px}.tag{border:1px solid var(--line2);background:#0b0b0a;color:var(--muted);padding:8px 11px;font-size:9px;letter-spacing:1.5px;text-transform:uppercase}.tag:hover{border-color:var(--gold2);color:var(--gold)}
-    .film-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.film-card{min-height:310px;background:var(--panel);padding:24px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}.film-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(201,168,76,.15),transparent 45%);opacity:0;transition:.25s}.film-card:hover:before{opacity:1}.film-num{font-size:10px;color:var(--gold);letter-spacing:2px}.film-card h3{font-family:"Bebas Neue";font-size:34px;letter-spacing:2px;color:var(--white);font-weight:400;position:relative}.film-card p{font-size:11px;line-height:1.7;color:var(--muted);position:relative}.film-meta{font-size:9px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;position:relative}
-    .prompt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.prompt-card{border:1px solid var(--line);background:linear-gradient(180deg,#11110f,#0b0b0a);padding:22px;transition:.25s}.prompt-card:hover{border-color:var(--gold2);transform:translateY(-4px)}.prompt-card .icon{font-size:24px;margin-bottom:18px}.prompt-card h3{font-family:"Bebas Neue";font-size:28px;letter-spacing:2px;color:var(--white);font-weight:400;margin-bottom:8px}.prompt-card p{font-size:11px;line-height:1.7;color:var(--muted)}
-    .library-tools{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0 22px}.library-search{flex:1;min-width:220px;background:#0b0b0a;border:1px solid var(--line2);color:var(--text);padding:13px 15px;font-family:"DM Mono";font-size:11px;outline:none}.library-search:focus{border-color:var(--gold2)}.filter-btn{background:#0b0b0a;border:1px solid var(--line2);color:var(--muted);font-family:"DM Mono";font-size:9px;letter-spacing:1.4px;text-transform:uppercase;padding:12px 13px;cursor:pointer;transition:.2s}.filter-btn:hover,.filter-btn.active{background:var(--gold);border-color:var(--gold);color:#090908}.library-meta{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--dim);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:18px}.library-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.lib-card{background:linear-gradient(180deg,#11110f,#0a0a09);border:1px solid var(--line);padding:18px;min-height:230px;display:flex;flex-direction:column;gap:10px;position:relative;transition:.2s}.lib-card:hover{border-color:var(--gold2);transform:translateY(-3px)}.lib-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.lib-card h3{font-family:"Bebas Neue";font-size:25px;letter-spacing:1.6px;color:var(--white);font-weight:400}.lib-cat{font-size:8px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.25);padding:4px 6px;white-space:nowrap}.lib-desc{font-size:10px;line-height:1.55;color:var(--muted)}.lib-prompt{font-family:"DM Mono";font-size:10px;line-height:1.65;color:#b8b2a3;background:#070706;border:1px solid var(--line);padding:12px;flex:1}.copy-prompt{align-self:flex-start;background:transparent;border:1px solid var(--line2);color:var(--muted);font-family:"DM Mono";font-size:8px;letter-spacing:1.4px;text-transform:uppercase;padding:8px 10px;cursor:pointer}.copy-prompt:hover{border-color:var(--gold);color:var(--gold)}.copy-prompt.copied{background:var(--gold);border-color:var(--gold);color:#090908}.load-more{margin:24px auto 0;display:flex}.hidden{display:none!important}
-    .contact{border-top:1px solid var(--line);background:#070706}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}.contact h2{font-family:"Bebas Neue";font-size:72px;letter-spacing:4px;color:var(--white);line-height:.95}.contact p{font-family:"Cormorant Garamond";font-size:24px;line-height:1.5;color:var(--text);margin-top:20px}.socials{display:grid;gap:10px}.socials a{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);padding:17px 18px;color:var(--muted);font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:.25s}.socials a:hover{border-color:var(--gold);color:var(--gold);padding-left:25px}.footer{border-top:1px solid var(--line);padding:24px 0;color:var(--dim);font-size:9px;letter-spacing:2px;text-transform:uppercase}.footer .container{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+    .nav{position:fixed;top:0;left:0;right:0;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 34px;background:rgba(8,8,7,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);z-index:1000}.brand{display:flex;align-items:center;gap:14px}.brand img{width:42px;height:42px;object-fit:contain}.brand span{font-family:"Bebas Neue",sans-serif;font-size:24px;letter-spacing:4px;color:var(--white)}.nav-links{display:flex;align-items:center;gap:2px}.nav-links a,.lang-switch button{border:1px solid transparent;background:transparent;color:var(--muted);font-family:"DM Mono";font-size:10px;letter-spacing:1.8px;text-transform:uppercase;padding:10px 13px;cursor:pointer;transition:.25s}.nav-links a:hover,.lang-switch button:hover{color:var(--gold);border-color:var(--line2)}.lang-switch{display:flex;border-left:1px solid var(--line);padding-left:12px;margin-left:8px}.lang-switch button.active{background:var(--gold);color:#090908;border-color:var(--gold)}
+    section{position:relative}.container{max-width:1180px;margin:0 auto;padding:0 28px}.hero{min-height:100vh;display:grid;grid-template-columns:.9fr 1.1fr;padding-top:68px;border-bottom:1px solid var(--line)}.hero-photo{position:relative;min-height:calc(100vh - 68px);border-right:1px solid var(--line);overflow:hidden;background:#111}.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(10%) contrast(1.08) brightness(.82)}.hero-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 2%,transparent 48%),linear-gradient(to right,rgba(0,0,0,.2),transparent 50%)}.photo-badge{position:absolute;left:30px;bottom:30px;border:1px solid rgba(201,168,76,.45);background:rgba(8,8,7,.72);backdrop-filter:blur(12px);padding:16px 18px;z-index:2}.photo-badge small{display:block;color:var(--gold);font-size:9px;letter-spacing:2.4px;text-transform:uppercase;margin-bottom:8px}.photo-badge span{font-family:"Inter",sans-serif;font-size:24px;color:var(--white)}.hero-content{display:flex;align-items:center;padding:72px 8vw}.eyebrow{font-size:10px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:22px}.hero h1{font-family:"Bebas Neue",sans-serif;font-size:clamp(72px,10vw,148px);line-height:.86;letter-spacing:4px;color:var(--white);text-shadow:0 24px 65px rgba(0,0,0,.45)}.hero h1 span{display:block;color:transparent;-webkit-text-stroke:1px var(--gold);opacity:.8}.roles{display:grid;gap:8px;margin:26px 0 30px}.roles div{font-family:"DM Mono";font-size:12px;letter-spacing:3px;color:var(--muted);text-transform:uppercase}.quote{font-family:"Inter",sans-serif;font-size:clamp(24px,3vw,38px);font-style:italic;line-height:1.28;color:var(--text);max-width:680px;border-left:2px solid var(--gold);padding-left:22px;margin-bottom:32px}.cta-row{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid var(--line2);padding:13px 18px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text);transition:.25s}.btn:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}.btn.gold{background:var(--gold);color:#090908;border-color:var(--gold);font-weight:500}.btn.gold:hover{box-shadow:0 0 26px rgba(201,168,76,.2);color:#090908}
+    .section-pad{padding:96px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:38px;border-bottom:1px solid var(--line);padding-bottom:22px}.label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}.section-head h2{font-family:"Bebas Neue",sans-serif;font-size:56px;letter-spacing:3px;color:var(--white);font-weight:400}.section-head p{max-width:440px;color:var(--muted);font-size:12px;line-height:1.7}.about-grid{display:grid;grid-template-columns:280px 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}.stats{background:var(--panel);display:grid}.stat{padding:26px;border-bottom:1px solid var(--line)}.stat:last-child{border-bottom:none}.stat strong{display:block;font-family:"Inter",sans-serif;font-size:44px;font-weight:300;color:var(--gold);line-height:1}.stat span{display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-top:8px}.bio-box{background:rgba(17,17,15,.75);padding:42px}.bio-text{display:none}.bio-text.active{display:block}.bio-text h3{font-family:"Inter",sans-serif;font-size:38px;font-weight:300;color:var(--white);margin-bottom:22px}.bio-text p{font-family:"Inter",sans-serif;font-size:20px;line-height:1.76;color:var(--text);margin-bottom:18px}.bio-text .final-quote{margin-top:30px;padding:24px;border-left:2px solid var(--gold);background:rgba(201,168,76,.06);font-style:italic;color:var(--white)}.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px}.tag{border:1px solid var(--line2);background:#0b0b0a;color:var(--muted);padding:8px 11px;font-size:9px;letter-spacing:1.5px;text-transform:uppercase}.tag:hover{border-color:var(--gold2);color:var(--gold)}
+    .film-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.film-card{min-height:310px;background:var(--panel);padding:24px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}.film-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(201,168,76,.15),transparent 45%);opacity:0;transition:.25s}.film-card:hover:before{opacity:1}.film-num{font-size:10px;color:var(--gold);letter-spacing:2px}.film-card h3{font-family:"Bebas Neue",sans-serif;font-size:34px;letter-spacing:2px;color:var(--white);font-weight:400;position:relative}.film-card p{font-size:11px;line-height:1.7;color:var(--muted);position:relative}.film-meta{font-size:9px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;position:relative}
+    .prompt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.prompt-card{border:1px solid var(--line);background:linear-gradient(180deg,#11110f,#0b0b0a);padding:22px;transition:.25s}.prompt-card:hover{border-color:var(--gold2);transform:translateY(-4px)}
+    .category-link{cursor:pointer;position:relative;isolation:isolate;overflow:hidden}
+    .category-link:before{content:"";position:absolute;inset:0;opacity:.95;z-index:0;transition:.25s;pointer-events:none}
+    .category-link:after{content:"";position:absolute;inset:1px;border:1px solid rgba(255,255,255,.035);pointer-events:none;z-index:1}
+    .category-link .icon,.category-link h3,.category-link p{position:relative;z-index:2}
+    .camera-card{background:linear-gradient(135deg,rgba(201,168,76,.18),rgba(17,17,15,.96) 52%,rgba(70,52,18,.20));box-shadow:inset 0 1px 0 rgba(201,168,76,.12)}
+    .lighting-card{background:linear-gradient(135deg,rgba(255,205,92,.20),rgba(17,17,15,.96) 52%,rgba(117,78,20,.16));box-shadow:inset 0 1px 0 rgba(255,220,130,.13)}
+    .composition-card{background:linear-gradient(135deg,rgba(143,116,52,.18),rgba(17,17,15,.96) 52%,rgba(75,91,118,.14));box-shadow:inset 0 1px 0 rgba(201,168,76,.10)}
+    .atmosphere-card{background:linear-gradient(135deg,rgba(94,104,122,.20),rgba(17,17,15,.96) 52%,rgba(201,168,76,.10));box-shadow:inset 0 1px 0 rgba(190,210,240,.08)}
+    .editing-card{background:linear-gradient(135deg,rgba(130,58,46,.18),rgba(17,17,15,.96) 52%,rgba(201,168,76,.12));box-shadow:inset 0 1px 0 rgba(255,120,90,.08)}
+    .storytelling-card{background:linear-gradient(135deg,rgba(96,70,122,.20),rgba(17,17,15,.96) 52%,rgba(201,168,76,.12));box-shadow:inset 0 1px 0 rgba(190,150,255,.08)}
+    .category-link:hover{border-color:var(--gold);transform:translateY(-6px);box-shadow:0 22px 55px rgba(0,0,0,.35),0 0 26px rgba(201,168,76,.12)}
+    .category-link:hover:before{opacity:1;background:radial-gradient(circle at 22% 0%,rgba(201,168,76,.25),transparent 42%)}
+    .category-link:hover h3{color:var(--gold)}
+    .category-link .icon{width:46px;height:46px;display:grid;place-items:center;border:1px solid rgba(201,168,76,.25);background:rgba(0,0,0,.18);border-radius:50%;box-shadow:0 0 24px rgba(201,168,76,.08)}
+.prompt-card .icon{font-size:24px;margin-bottom:18px}.prompt-card h3{font-family:"Bebas Neue",sans-serif;font-size:28px;letter-spacing:2px;color:var(--white);font-weight:400;margin-bottom:8px}.prompt-card p{font-size:11px;line-height:1.7;color:var(--muted)}
+    .library-tools{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0 22px}.library-search{flex:1;min-width:220px;background:#0b0b0a;border:1px solid var(--line2);color:var(--text);padding:13px 15px;font-family:"DM Mono";font-size:11px;outline:none}.library-search:focus{border-color:var(--gold2)}.filter-btn{background:#0b0b0a;border:1px solid var(--line2);color:var(--muted);font-family:"DM Mono";font-size:9px;letter-spacing:1.4px;text-transform:uppercase;padding:12px 13px;cursor:pointer;transition:.2s}.filter-btn:hover,.filter-btn.active{background:var(--gold);border-color:var(--gold);color:#090908}.library-meta{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--dim);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:18px}.library-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.lib-card{background:linear-gradient(180deg,#11110f,#0a0a09);border:1px solid var(--line);padding:18px;min-height:230px;display:flex;flex-direction:column;gap:10px;position:relative;transition:.2s}.lib-card:hover{border-color:var(--gold2);transform:translateY(-3px)}.lib-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.lib-card h3{font-family:"Bebas Neue",sans-serif;font-size:25px;letter-spacing:1.6px;color:var(--white);font-weight:400}.lib-cat{font-size:8px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.25);padding:4px 6px;white-space:nowrap}.lib-desc{font-size:10px;line-height:1.55;color:var(--muted)}.lib-prompt{font-family:"DM Mono";font-size:10px;line-height:1.65;color:#b8b2a3;background:#070706;border:1px solid var(--line);padding:12px;flex:1}.copy-prompt{align-self:flex-start;background:transparent;border:1px solid var(--line2);color:var(--muted);font-family:"DM Mono";font-size:8px;letter-spacing:1.4px;text-transform:uppercase;padding:8px 10px;cursor:pointer}.copy-prompt:hover{border-color:var(--gold);color:var(--gold)}.copy-prompt.copied{background:var(--gold);border-color:var(--gold);color:#090908}.load-more{margin:24px auto 0;display:flex}.hidden{display:none!important}
+    .contact{border-top:1px solid var(--line);background:#070706}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}.contact h2{font-family:"Bebas Neue",sans-serif;font-size:72px;letter-spacing:4px;color:var(--white);line-height:.95}.contact p{font-family:"Inter",sans-serif;font-size:24px;line-height:1.5;color:var(--text);margin-top:20px}.socials{display:grid;gap:10px}.socials a{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);padding:17px 18px;color:var(--muted);font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:.25s}.socials a:hover{border-color:var(--gold);color:var(--gold);padding-left:25px}.footer{border-top:1px solid var(--line);padding:24px 0;color:var(--dim);font-size:9px;letter-spacing:2px;text-transform:uppercase}.footer .container{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
     @media(max-width:980px){.hero{grid-template-columns:1fr}.hero-photo{min-height:70vh;border-right:none;border-bottom:1px solid var(--line)}.hero-content{padding:56px 28px}.about-grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,1fr)}.stat{border-right:1px solid var(--line);border-bottom:none}.film-grid{grid-template-columns:repeat(2,1fr)}.prompt-grid,.library-grid{grid-template-columns:1fr 1fr}.contact-grid{grid-template-columns:1fr}.nav{padding:0 16px}.nav-links a{display:none}.brand span{font-size:19px}}
     @media(max-width:620px){.loader-title{font-size:30px}.hero h1{font-size:70px}.section-pad{padding:64px 0}.container{padding:0 18px}.section-head{display:block}.section-head h2{font-size:42px;margin-bottom:14px}.bio-box{padding:26px}.bio-text p{font-size:18px}.stats{grid-template-columns:1fr}.stat{border-right:none;border-bottom:1px solid var(--line)}.film-grid,.prompt-grid,.library-grid{grid-template-columns:1fr}.contact h2{font-size:48px}.quote{font-size:24px}.photo-badge{left:18px;bottom:18px}.nav{height:60px}.brand img{width:36px;height:36px}.lang-switch{margin-left:0;padding-left:0;border-left:0}.lang-switch button{padding:8px 9px}.hero{padding-top:60px}.hero-photo{min-height:62vh}.roles div{font-size:10px}}
   </style>
@@ -41,7 +56,7 @@
 <body>
   <div class="loader">
     <div class="loader-inner">
-      <img class="loader-logo" src="https://i.ibb.co/0pnPzVrh/Screenshot-20260606-004634-Gallery.jpg" alt="EA Logo" />
+      <img class="loader-logo" src="https://i.ibb.co/R8N7Hzc/20260606-013453-0000.png" alt="EA Logo" />
       <div class="loader-title">EKREM ATAKAN</div>
       <div class="loader-sub">AI Filmmaker</div>
     </div>
@@ -49,7 +64,7 @@
 
   <header class="nav">
     <a href="#home" class="brand">
-      <img src="https://i.ibb.co/0pnPzVrh/Screenshot-20260606-004634-Gallery.jpg" alt="EA Logo" />
+      <img src="https://i.ibb.co/R8N7Hzc/20260606-013453-0000.png" alt="EA Logo" />
       <span>Ekrem Atakan</span>
     </a>
     <div class="nav-links">
@@ -68,21 +83,18 @@
     <section id="home" class="hero">
       <div class="hero-photo">
         <img src="https://i.ibb.co/Kd0hNsq/MG-20260530-174749-346.webp" alt="Ekrem Atakan" />
-        <div class="photo-badge"><small>Active since 2003</small><span>Istanbul, Türkiye</span></div>
+        <div class="photo-badge"><small data-tr="2003'ten Bu Yana" data-en="Since 2003">2003'ten Bu Yana</small><span data-tr="İstanbul, Türkiye" data-en="Istanbul, Türkiye">İstanbul, Türkiye</span></div>
       </div>
       <div class="hero-content">
         <div>
           <div class="eyebrow" data-tr="Medya Profesyoneli • AI Filmmaker" data-en="Media Professional • AI Filmmaker">Medya Profesyoneli • AI Filmmaker</div>
           <h1>Ekrem <span>Atakan</span></h1>
           <div class="roles">
-            <div data-tr="Medya Profesyoneli" data-en="Media Professional">Medya Profesyoneli</div>
-            <div data-tr="AI İçerik Üreticisi" data-en="AI Content Creator">AI İçerik Üreticisi</div>
-            <div data-tr="Görsel Hikâye Anlatıcısı" data-en="Visual Storyteller">Görsel Hikâye Anlatıcısı</div>
           </div>
           <div class="quote" data-tr='"Teknoloji değişir, araçlar değişir; ancak güçlü hikâyeler her zaman kalır."' data-en='"Technology evolves, tools change, but powerful stories remain timeless."'>"Teknoloji değişir, araçlar değişir; ancak güçlü hikâyeler her zaman kalır."</div>
           <div class="cta-row">
-            <a class="btn gold" href="#about">Biyografiyi Gör</a>
-            <a class="btn" href="#contact">İletişim</a>
+            <a class="btn gold" href="#about" data-tr="Biyografiyi Keşfet" data-en="Explore Biography">Biyografiyi Keşfet</a>
+            <a class="btn" href="#contact" data-tr="İletişime Geç" data-en="Get In Touch">İletişime Geç</a>
           </div>
         </div>
       </div>
@@ -103,13 +115,13 @@
           <div class="bio-box">
             <article id="bio-tr" class="bio-text active">
               <h3>Ekrem Atakan</h3>
-              <p>Ekrem Atakan, 2003 yılından bu yana medya, yayıncılık ve görsel iletişim sektöründe faaliyet gösteren deneyimli bir medya profesyoneli, yapay zekâ içerik üreticisi ve görsel hikâye anlatıcısıdır.</p>
+              <p>2003 yılından bu yana medya, yayıncılık ve görsel iletişim sektöründe faaliyet gösteren deneyimli bir medya profesyoneli, yapay zekâ içerik üreticisi ve görsel hikâye anlatıcısıdır.</p>
               <p>Meslek hayatına ulusal haber yayıncılığında başlayan Atakan, kariyerinin ilk yıllarında haber editörlüğü, yayın koordinasyonu ve içerik yönetimi alanlarında görev aldı. 2007 yılından itibaren Türkiye Cumhuriyeti Cumhurbaşkanlığı İletişim Başkanlığı tarafından verilen Basın Kartı sahibidir ve medya sektöründeki çalışmalarını kesintisiz olarak sürdürmektedir.</p>
               <p>Ulusal ve uluslararası medya kuruluşlarına yönelik canlı yayın operasyonları, haber akış yönetimi, saha koordinasyonu ve yayın organizasyonlarında sorumluluk üstlenmiştir.</p>
               <p>Kariyeri boyunca dünyanın önde gelen yayın kuruluşlarıyla çeşitli projelerde ve operasyonlarda çalışma fırsatı bulan Atakan; CNN International, BBC, ARD, ZDF, ORF, RAI, Al Jazeera, Nippon TV, NTV Russia ve SRG SSR gibi uluslararası yayın kuruluşlarının Türkiye operasyonlarında görev almıştır.</p>
               <p>Canlı yayın teknolojileri, haber operasyonları, prodüksiyon yönetimi ve medya organizasyonu alanlarında yirmi yılı aşkın tecrübeye sahip olan Atakan, halen Türkiye'nin önde gelen kamu yayın kuruluşlarından birinde profesyonel kariyerini sürdürmektedir.</p>
               <p>Son yıllarda çalışmalarını üretken yapay zekâ, dijital hikâye anlatımı ve sinematik içerik üretimi üzerine yoğunlaştıran Atakan; yapay zekâ destekli kısa filmler, sinematik videolar, görsel tasarım projeleri ve yeni medya teknolojileri üzerine çalışmalar yürütmektedir.</p>
-              <p>Özellikle GPT-Image, Seedance, Kling, Higgsfield ve Suno gibi üretken yapay zekâ araçlarını kullanarak özgün hikâyeler, kısa filmler ve deneysel sinematik projeler geliştirmektedir. Yapay zekâyı yalnızca bir araç olarak değil, yeni nesil görsel anlatımın önemli bir ortağı olarak görmektedir.</p>
+              <p>Özellikle GPT-Image, Seedance, Kling, Higgsfield ve Suno gibi üretken yapay zekâ araçlarını kullanarak özgün hikâyeler, kısa filmler ve deneysel sinematik projeler geliştirmektedir. Yapay zekâyı yalnızca bir araç olarak değil, yeni nesil görsel anlatımın yaratıcı bir ortağı olarak görmektedir.</p>
               <p>Bugün çalışmalarını medya tecrübesi ile yapay zekâ teknolojilerini bir araya getirerek; eğitim, içerik üretimi, dijital hikâye anlatımı ve AI Filmmaking alanlarında sürdürmektedir.</p>
               <p class="final-quote">"Teknoloji değişir, araçlar değişir; ancak güçlü hikâyeler her zaman kalır."</p>
             </article>
@@ -139,12 +151,39 @@
           <div><div class="label" data-tr="Öne Çıkan Projeler" data-en="Selected Work">Öne Çıkan Projeler</div><h2 data-tr="AI Filmler" data-en="AI Films">AI Filmler</h2></div>
           <p data-tr="Kısa filmler, sinematik konseptler, deneysel AI videoları ve yeni medya projeleri." data-en="Short films, cinematic concepts, experimental AI videos and new media projects.">Kısa filmler, sinematik konseptler, deneysel AI videoları ve yeni medya projeleri.</p>
         </div>
-        <div class="film-grid">
-          <article class="film-card"><div class="film-num">01</div><h3>PULSE</h3><p>One man. One pulse. One destiny. A cinematic journey beneath a forgotten world.</p><div class="film-meta">AI Cinematic Game Trailer</div></article>
-          <article class="film-card"><div class="film-num">02</div><h3>REMAINING</h3><p>An experimental AI short film inspired by the poetic language of cinema.</p><div class="film-meta">Experimental AI Short</div></article>
-          <article class="film-card"><div class="film-num">03</div><h3>DUNE: ARRRAKIS GP</h3><p>What if Formula 1 existed in the Dune universe? A race across Arrakis, powered by spice.</p><div class="film-meta">Cinematic Concept</div></article>
-          <article class="film-card"><div class="film-num">04</div><h3>FUTURE PROJECTS</h3><p>New worlds, new stories and cinematic experiments crafted with generative AI.</p><div class="film-meta">Coming Soon</div></article>
-        </div>
+        
+
+<div class="film-grid">
+
+<a class="film-card" href="https://www.instagram.com/reel/DSHyIyWCNub/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener">
+<div class="film-num">01</div>
+<h3>BEN</h3>
+<p data-tr='"BEN"e Yolculuk. Kimlik, bilinç ve içsel keşif üzerine sinematik kısa film denemesi.' data-en='A cinematic short-film experiment exploring identity, consciousness and the inner self.'>"BEN"e Yolculuk. Kimlik, bilinç ve içsel keşif üzerine sinematik kısa film denemesi.</p>
+<div class="film-meta" data-tr="Sinematik Kısa Film Denemesi" data-en="Cinematic Short Experiment">Sinematik Kısa Film Denemesi</div>
+</a>
+
+<a class="film-card" href="https://www.instagram.com/reel/DZKVsnQoYbd/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener">
+<div class="film-num">02</div>
+<h3>REMAINING</h3>
+<p data-tr="Sinemanın şiirsel dilinden ilham alan deneysel bir yapay zekâ kısa filmi." data-en="An experimental AI short film inspired by the poetic language of cinema.">Sinemanın şiirsel dilinden ilham alan deneysel bir yapay zekâ kısa filmi.</p>
+<div class="film-meta" data-tr="Deneysel AI Kısa Film" data-en="Experimental AI Short">Deneysel AI Kısa Film</div>
+</a>
+
+<a class="film-card" href="https://www.instagram.com/reel/DZMZ2N7sdi5/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener">
+<div class="film-num">03</div>
+<h3>DUNE: ARRAKIS GRAND PRIX</h3>
+<p data-tr="Formula 1 Dune evreninde olsaydı nasıl görünürdü? Baharatla çalışan bir Arrakis yarışı." data-en="What if Formula 1 existed in the Dune universe? A race across Arrakis powered by spice.">Formula 1 Dune evreninde olsaydı nasıl görünürdü? Baharatla çalışan bir Arrakis yarışı.</p>
+<div class="film-meta" data-tr="Sinematik Konsept" data-en="Cinematic Concept">Sinematik Konsept</div>
+</a>
+
+<a class="film-card" href="https://www.instagram.com/ekrematakan/" target="_blank" rel="noopener">
+<div class="film-num">04</div>
+<h3 data-tr="GELECEK PROJELER" data-en="FUTURE PROJECTS">GELECEK PROJELER</h3>
+<p data-tr="Üretken yapay zekâ ile geliştirilen yeni dünyalar, yeni hikâyeler ve yeni sinematik deneyler." data-en="New worlds, new stories and cinematic experiments crafted with generative AI.">Üretken yapay zekâ ile geliştirilen yeni dünyalar, yeni hikâyeler ve yeni sinematik deneyler.</p>
+<div class="film-meta" data-tr="Daha Fazla Proje" data-en="View More Projects">Daha Fazla Proje</div>
+</a>
+
+</div>
       </div>
     </section>
 
@@ -155,12 +194,12 @@
           <p data-tr="Kategori filtreli, aramalı ve tek tıkla kopyalanabilir sinematik AI prompt arşivi." data-en="A searchable, category-filtered and one-click copy cinematic AI prompt archive.">Kategori filtreli, aramalı ve tek tıkla kopyalanabilir sinematik AI prompt arşivi.</p>
         </div>
         <div class="prompt-grid">
-          <article class="prompt-card"><div class="icon">🎥</div><h3 data-tr="Kamera Hareketleri" data-en="Camera Work">Kamera Hareketleri</h3><p data-tr="Drone, dolly, POV, tracking, orbit, macro ve sinematik kamera dili." data-en="Drone, dolly, POV, tracking, orbit, macro and cinematic movement language.">Drone, dolly, POV, tracking, orbit, macro ve sinematik kamera dili.</p></article>
-          <article class="prompt-card"><div class="icon">💡</div><h3 data-tr="Işıklandırma" data-en="Lighting">Işıklandırma</h3><p data-tr="Golden hour, low-key, chiaroscuro, pratik ışık ve sinematik kontrast." data-en="Golden hour, low-key, chiaroscuro, practical light and cinematic contrast.">Golden hour, low-key, chiaroscuro, pratik ışık ve sinematik kontrast.</p></article>
-          <article class="prompt-card"><div class="icon">🎨</div><h3 data-tr="Kompozisyon" data-en="Composition">Kompozisyon</h3><p data-tr="Simetri, negatif alan, yön çizgileri, çerçeve içinde çerçeve ve görsel ağırlık." data-en="Symmetry, negative space, leading lines, frame within frame and visual weight.">Simetri, negatif alan, yön çizgileri, çerçeve içinde çerçeve ve görsel ağırlık.</p></article>
-          <article class="prompt-card"><div class="icon">🌫</div><h3 data-tr="Atmosfer" data-en="Atmosphere">Atmosfer</h3><p data-tr="Sis, yağmur, toz, duman, partiküller, duygu ve çevresel hikâye anlatımı." data-en="Fog, rain, dust, smoke, particles, mood and environmental storytelling.">Sis, yağmur, toz, duman, partiküller, duygu ve çevresel hikâye anlatımı.</p></article>
-          <article class="prompt-card"><div class="icon">✂️</div><h3 data-tr="Kurgu" data-en="Editing">Kurgu</h3><p data-tr="Montaj ritmi, match cut, crash zoom, siyah kareler ve fragman temposu." data-en="Montage rhythm, match cuts, crash zooms, black frames and trailer pacing.">Montaj ritmi, match cut, crash zoom, siyah kareler ve fragman temposu.</p></article>
-          <article class="prompt-card"><div class="icon">📖</div><h3 data-tr="Hikâye Anlatımı" data-en="Storytelling">Hikâye Anlatımı</h3><p data-tr="Evren kurma, karakter duygusu, görsel akışlar ve AI filmmaking iş akışları." data-en="Worldbuilding, character emotion, visual arcs and AI filmmaking workflows.">Evren kurma, karakter duygusu, görsel akışlar ve AI filmmaking iş akışları.</p></article>
+          <article class="prompt-card category-link camera-card" data-target="Camera"><div class="icon">🎥</div><h3 data-tr="Kamera Hareketleri" data-en="Camera Work">Kamera Hareketleri</h3><p data-tr="Drone, dolly, POV, tracking, orbit, macro ve sinematik kamera dili." data-en="Drone, dolly, POV, tracking, orbit, macro and cinematic movement language.">Drone, dolly, POV, tracking, orbit, macro ve sinematik kamera dili.</p></article>
+          <article class="prompt-card category-link lighting-card" data-target="Lighting"><div class="icon">💡</div><h3 data-tr="Işıklandırma" data-en="Lighting">Işıklandırma</h3><p data-tr="Golden hour, low-key, chiaroscuro, pratik ışık ve sinematik kontrast." data-en="Golden hour, low-key, chiaroscuro, practical light and cinematic contrast.">Golden hour, low-key, chiaroscuro, pratik ışık ve sinematik kontrast.</p></article>
+          <article class="prompt-card category-link composition-card" data-target="Composition"><div class="icon">🎨</div><h3 data-tr="Kompozisyon" data-en="Composition">Kompozisyon</h3><p data-tr="Simetri, negatif alan, yön çizgileri, çerçeve içinde çerçeve ve görsel ağırlık." data-en="Symmetry, negative space, leading lines, frame within frame and visual weight.">Simetri, negatif alan, yön çizgileri, çerçeve içinde çerçeve ve görsel ağırlık.</p></article>
+          <article class="prompt-card category-link atmosphere-card" data-target="Atmosphere"><div class="icon">🌫</div><h3 data-tr="Atmosfer" data-en="Atmosphere">Atmosfer</h3><p data-tr="Sis, yağmur, toz, duman, partiküller, duygu ve çevresel hikâye anlatımı." data-en="Fog, rain, dust, smoke, particles, mood and environmental storytelling.">Sis, yağmur, toz, duman, partiküller, duygu ve çevresel hikâye anlatımı.</p></article>
+          <article class="prompt-card category-link editing-card" data-target="Editing"><div class="icon">✂️</div><h3 data-tr="Kurgu" data-en="Editing">Kurgu</h3><p data-tr="Montaj ritmi, match cut, crash zoom, siyah kareler ve fragman temposu." data-en="Montage rhythm, match cuts, crash zooms, black frames and trailer pacing.">Montaj ritmi, match cut, crash zoom, siyah kareler ve fragman temposu.</p></article>
+          <article class="prompt-card category-link storytelling-card" data-target="Storytelling"><div class="icon">📖</div><h3 data-tr="Hikâye Anlatımı" data-en="Storytelling">Hikâye Anlatımı</h3><p data-tr="Evren kurma, karakter duygusu, görsel akışlar ve AI filmmaking iş akışları." data-en="Worldbuilding, character emotion, visual arcs and AI filmmaking workflows.">Evren kurma, karakter duygusu, görsel akışlar ve AI filmmaking iş akışları.</p></article>
         </div>
 
         <div class="library-tools">
@@ -200,7 +239,7 @@
   </main>
 
   <footer class="footer">
-    <div class="container"><span>Tüm hakları saklıdır © 2026 Ekrem Atakan</span><span>Media Professional • AI Filmmaker • Visual Storyteller</span></div>
+    <div class="container"><span>© 2026 Ekrem Atakan</span><span>Media Professional • AI Filmmaker • Visual Storyteller</span></div>
   </footer>
 
   <script>
@@ -295,6 +334,21 @@
     });
     document.addEventListener('input', e=>{ if(e.target.matches('#promptSearch')) renderPrompts(true); });
     window.addEventListener('DOMContentLoaded', ()=>renderPrompts(true));
+
+
+    document.addEventListener('click', e=>{
+      const card = e.target.closest('.category-link');
+      if(!card) return;
+      const category = card.dataset.target;
+      const promptsSection = document.getElementById('prompts');
+      document.querySelectorAll('.filter-btn').forEach(btn=>{
+        btn.classList.remove('active');
+        if(btn.dataset.cat === category){ btn.classList.add('active'); }
+      });
+      activeCat = category;
+      renderPrompts(true);
+      if(promptsSection){ promptsSection.scrollIntoView({behavior:'smooth', block:'start'}); }
+    });
 
     function setLang(lang, btn){
       currentLang = lang;
