@@ -9,54 +9,199 @@
   <meta property="og:description" content="Media Professional • AI Filmmaker • Visual Storyteller" />
   <meta property="og:image" content="https://i.ibb.co/Kd0hNsq/MG-20260530-174749-346.webp" />
   <meta name="theme-color" content="#0a0a0a" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     :root{
-      --bg:#080807;--bg2:#0d0d0c;--panel:#11110f;--line:#24231f;--line2:#343126;
-      --gold:#c9a84c;--gold2:#8f7434;--gold3:#2b2411;--text:#d9d5c9;--muted:#8b877b;
-      --dim:#565247;--white:#f4efe3;--shadow:rgba(0,0,0,.55);
+      --bg:#080807;--panel:#11110f;--line:#24231f;--line2:#343126;
+      --gold:#c9a84c;--text:#d9d5c9;--muted:#8b877b;
+      --dim:#565247;--white:#f4efe3;
     }
     html{scroll-behavior:smooth}
     body{background:var(--bg);color:var(--text);font-family:"Inter",sans-serif;overflow-x:hidden;min-height:100vh}
-    body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 75% 20%,rgba(201,168,76,.12),transparent 28%),radial-gradient(circle at 20% 80%,rgba(201,168,76,.06),transparent 35%),linear-gradient(180deg,rgba(255,255,255,.02),transparent 25%);z-index:-2}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 75% 20%,rgba(201,168,76,.12),transparent 28%),radial-gradient(circle at 20% 80%,rgba(201,168,76,.06),transparent 35%);z-index:-2}
     body:after{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:56px 56px;mask-image:linear-gradient(to bottom,black,transparent 85%);z-index:-1}
     a{color:inherit;text-decoration:none}
+
     .loader{position:fixed;inset:0;background:#050505;z-index:9999;display:grid;place-items:center;animation:fadeOut .8s ease 1.75s forwards}
-    .loader-inner{text-align:center;animation:rise .9s ease both}.loader-logo{width:86px;height:86px;object-fit:contain;margin-bottom:22px;filter:drop-shadow(0 0 18px rgba(201,168,76,.22))}.loader-title{font-family:"Bebas Neue",sans-serif;font-size:40px;letter-spacing:8px;color:var(--white)}.loader-sub{font-size:9px;letter-spacing:4px;color:var(--gold);margin-top:8px;text-transform:uppercase}
-    @keyframes fadeOut{to{opacity:0;visibility:hidden}}@keyframes rise{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
-    .nav{position:fixed;top:0;left:0;right:0;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 34px;background:rgba(8,8,7,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);z-index:1000}.brand{display:flex;align-items:center;gap:14px}.brand img{width:42px;height:42px;object-fit:contain}.brand span{font-family:"Bebas Neue",sans-serif;font-size:24px;letter-spacing:4px;color:var(--white)}.nav-links{display:flex;align-items:center;gap:2px}.nav-links a,.lang-switch button{border:1px solid transparent;background:transparent;color:var(--muted);font-family:"DM Mono";font-size:10px;letter-spacing:1.8px;text-transform:uppercase;padding:10px 13px;cursor:pointer;transition:.25s}.nav-links a:hover,.lang-switch button:hover{color:var(--gold);border-color:var(--line2)}.lang-switch{display:flex;border-left:1px solid var(--line);padding-left:12px;margin-left:8px}.lang-switch button.active{background:var(--gold);color:#090908;border-color:var(--gold)}
-    section{position:relative}.container{max-width:1180px;margin:0 auto;padding:0 28px}.hero{min-height:100vh;display:grid;grid-template-columns:.9fr 1.1fr;padding-top:68px;border-bottom:1px solid var(--line)}.hero-photo{position:relative;min-height:calc(100vh - 68px);border-right:1px solid var(--line);overflow:hidden;background:#111}.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(10%) contrast(1.08) brightness(.82)}.hero-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 2%,transparent 48%),linear-gradient(to right,rgba(0,0,0,.2),transparent 50%)}.photo-badge{position:absolute;left:30px;bottom:30px;border:1px solid rgba(201,168,76,.45);background:rgba(8,8,7,.72);backdrop-filter:blur(12px);padding:16px 18px;z-index:2}.photo-badge small{display:block;color:var(--gold);font-size:9px;letter-spacing:2.4px;text-transform:uppercase;margin-bottom:8px}.photo-badge span{font-family:"Inter",sans-serif;font-size:24px;color:var(--white)}.hero-content{display:flex;align-items:center;padding:72px 8vw}.eyebrow{font-size:10px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:22px}.hero h1{font-family:"Bebas Neue",sans-serif;font-size:clamp(72px,10vw,148px);line-height:.86;letter-spacing:4px;color:var(--white);text-shadow:0 24px 65px rgba(0,0,0,.45)}.hero h1 span{display:block;color:transparent;-webkit-text-stroke:1px var(--gold);opacity:.8}.roles{display:grid;gap:8px;margin:26px 0 30px}.roles div{font-family:"DM Mono";font-size:12px;letter-spacing:3px;color:var(--muted);text-transform:uppercase}.quote{font-family:"Inter",sans-serif;font-size:clamp(24px,3vw,38px);font-style:italic;line-height:1.28;color:var(--text);max-width:680px;border-left:2px solid var(--gold);padding-left:22px;margin-bottom:32px}.cta-row{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid var(--line2);padding:13px 18px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text);transition:.25s}.btn:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}.btn.gold{background:var(--gold);color:#090908;border-color:var(--gold);font-weight:500}.btn.gold:hover{box-shadow:0 0 26px rgba(201,168,76,.2);color:#090908}
-    .section-pad{padding:96px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:38px;border-bottom:1px solid var(--line);padding-bottom:22px}.label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}.section-head h2{font-family:"Bebas Neue",sans-serif;font-size:56px;letter-spacing:3px;color:var(--white);font-weight:400}.section-head p{max-width:440px;color:var(--muted);font-size:12px;line-height:1.7}.about-grid{display:grid;grid-template-columns:280px 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}.stats{background:var(--panel);display:grid}.stat{padding:26px;border-bottom:1px solid var(--line)}.stat:last-child{border-bottom:none}.stat strong{display:block;font-family:"Inter",sans-serif;font-size:44px;font-weight:300;color:var(--gold);line-height:1}.stat span{display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-top:8px}.bio-box{background:rgba(17,17,15,.75);padding:42px}.bio-text{display:none}.bio-text.active{display:block}.bio-text h3{font-family:"Inter",sans-serif;font-size:38px;font-weight:300;color:var(--white);margin-bottom:22px}.bio-text p{font-family:"Inter",sans-serif;font-size:20px;line-height:1.76;color:var(--text);margin-bottom:18px}.bio-text .final-quote{margin-top:30px;padding:24px;border-left:2px solid var(--gold);background:rgba(201,168,76,.06);font-style:italic;color:var(--white)}.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px}.tag{border:1px solid var(--line2);background:#0b0b0a;color:var(--muted);padding:8px 11px;font-size:9px;letter-spacing:1.5px;text-transform:uppercase}.tag:hover{border-color:var(--gold2);color:var(--gold)}
-    .film-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.film-card{min-height:310px;background:var(--panel);padding:24px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}.film-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(201,168,76,.15),transparent 45%);opacity:0;transition:.25s}.film-card:hover:before{opacity:1}.film-num{font-size:10px;color:var(--gold);letter-spacing:2px}.film-card h3{font-family:"Bebas Neue",sans-serif;font-size:34px;letter-spacing:2px;color:var(--white);font-weight:400;position:relative}.film-card p{font-size:11px;line-height:1.7;color:var(--muted);position:relative}.film-meta{font-size:9px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;position:relative}
-    .prompt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.prompt-card{border:1px solid var(--line);background:linear-gradient(180deg,#11110f,#0b0b0a);padding:22px;transition:.25s}.prompt-card:hover{border-color:var(--gold2);transform:translateY(-4px)}
-    .category-link{cursor:pointer;position:relative;isolation:isolate;overflow:hidden}
-    .category-link:before{content:"";position:absolute;inset:0;opacity:.95;z-index:0;transition:.25s;pointer-events:none}
-    .category-link:after{content:"";position:absolute;inset:1px;border:1px solid rgba(255,255,255,.035);pointer-events:none;z-index:1}
-    .category-link .icon,.category-link h3,.category-link p{position:relative;z-index:2}
-    .camera-card{background:linear-gradient(135deg,rgba(201,168,76,.18),rgba(17,17,15,.96) 52%,rgba(70,52,18,.20));box-shadow:inset 0 1px 0 rgba(201,168,76,.12)}
-    .lighting-card{background:linear-gradient(135deg,rgba(255,205,92,.20),rgba(17,17,15,.96) 52%,rgba(117,78,20,.16));box-shadow:inset 0 1px 0 rgba(255,220,130,.13)}
-    .composition-card{background:linear-gradient(135deg,rgba(143,116,52,.18),rgba(17,17,15,.96) 52%,rgba(75,91,118,.14));box-shadow:inset 0 1px 0 rgba(201,168,76,.10)}
-    .atmosphere-card{background:linear-gradient(135deg,rgba(94,104,122,.20),rgba(17,17,15,.96) 52%,rgba(201,168,76,.10));box-shadow:inset 0 1px 0 rgba(190,210,240,.08)}
-    .editing-card{background:linear-gradient(135deg,rgba(130,58,46,.18),rgba(17,17,15,.96) 52%,rgba(201,168,76,.12));box-shadow:inset 0 1px 0 rgba(255,120,90,.08)}
-    .storytelling-card{background:linear-gradient(135deg,rgba(96,70,122,.20),rgba(17,17,15,.96) 52%,rgba(201,168,76,.12));box-shadow:inset 0 1px 0 rgba(190,150,255,.08)}
-    .category-link:hover{border-color:var(--gold);transform:translateY(-6px);box-shadow:0 22px 55px rgba(0,0,0,.35),0 0 26px rgba(201,168,76,.12)}
-    .category-link:hover:before{opacity:1;background:radial-gradient(circle at 22% 0%,rgba(201,168,76,.25),transparent 42%)}
-    .category-link:hover h3{color:var(--gold)}
-    .category-link .icon{width:46px;height:46px;display:grid;place-items:center;border:1px solid rgba(201,168,76,.25);background:rgba(0,0,0,.18);border-radius:50%;box-shadow:0 0 24px rgba(201,168,76,.08)}
-.prompt-card .icon{font-size:24px;margin-bottom:18px}.prompt-card h3{font-family:"Bebas Neue",sans-serif;font-size:28px;letter-spacing:2px;color:var(--white);font-weight:400;margin-bottom:8px}.prompt-card p{font-size:11px;line-height:1.7;color:var(--muted)}
+    .loader-inner{text-align:center;animation:rise .9s ease both}
+    .loader-logo{width:86px;height:86px;object-fit:contain;margin-bottom:22px;filter:drop-shadow(0 0 18px rgba(201,168,76,.22))}
+    .loader-title{font-family:"Bebas Neue",sans-serif;font-size:40px;letter-spacing:8px;color:var(--white)}
+    .loader-sub{font-size:9px;letter-spacing:4px;color:var(--gold);margin-top:8px;text-transform:uppercase}
+    @keyframes fadeOut{to{opacity:0;visibility:hidden}}
+    @keyframes rise{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
 
-    .free-access-badge{display:inline-flex;align-items:center;gap:8px;margin-top:14px;border:1px solid rgba(201,168,76,.42);background:linear-gradient(135deg,rgba(201,168,76,.16),rgba(17,17,15,.72));color:var(--gold);padding:8px 12px;font-size:9px;letter-spacing:2px;text-transform:uppercase;box-shadow:0 0 24px rgba(201,168,76,.08)}
-    .free-access-badge:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px rgba(201,168,76,.55)}
+    .nav{position:fixed;top:0;left:0;right:0;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 34px;background:rgba(8,8,7,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);z-index:1000}
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand img{width:42px;height:42px;object-fit:contain}
+    .brand span{font-family:"Bebas Neue",sans-serif;font-size:24px;letter-spacing:4px;color:var(--white)}
+    .nav-links{display:flex;align-items:center;gap:2px}
+    .nav-links a,.lang-switch button{border:1px solid transparent;background:transparent;color:var(--muted);font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;padding:10px 13px;cursor:pointer;transition:.25s}
+    .nav-links a:hover,.lang-switch button:hover{color:var(--gold);border-color:var(--line2)}
+    .nav-links .guide-link{color:var(--gold);border-color:rgba(201,168,76,.35)}
+    .lang-switch{display:flex;border-left:1px solid var(--line);padding-left:12px;margin-left:8px}
+    .lang-switch button.active{background:var(--gold);color:#090908;border-color:var(--gold)}
 
-    .library-tools{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0 22px}.library-search{flex:1;min-width:220px;background:#0b0b0a;border:1px solid var(--line2);color:var(--text);padding:13px 15px;font-family:"DM Mono";font-size:11px;outline:none}.library-search:focus{border-color:var(--gold2)}.filter-btn{background:#0b0b0a;border:1px solid var(--line2);color:var(--muted);font-family:"DM Mono";font-size:9px;letter-spacing:1.4px;text-transform:uppercase;padding:12px 13px;cursor:pointer;transition:.2s}.filter-btn:hover,.filter-btn.active{background:var(--gold);border-color:var(--gold);color:#090908}.library-meta{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--dim);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:18px}.library-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.lib-card{background:linear-gradient(180deg,#11110f,#0a0a09);border:1px solid var(--line);padding:18px;min-height:230px;display:flex;flex-direction:column;gap:10px;position:relative;transition:.2s}.lib-card:hover{border-color:var(--gold2);transform:translateY(-3px)}.lib-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.lib-card h3{font-family:"Bebas Neue",sans-serif;font-size:25px;letter-spacing:1.6px;color:var(--white);font-weight:400}.lib-cat{font-size:8px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.25);padding:4px 6px;white-space:nowrap}.lib-desc{font-size:10px;line-height:1.55;color:var(--muted)}.lib-prompt{font-family:"DM Mono";font-size:10px;line-height:1.65;color:#b8b2a3;background:#070706;border:1px solid var(--line);padding:12px;flex:1}.copy-prompt{align-self:flex-start;background:transparent;border:1px solid var(--line2);color:var(--muted);font-family:"DM Mono";font-size:8px;letter-spacing:1.4px;text-transform:uppercase;padding:8px 10px;cursor:pointer}.copy-prompt:hover{border-color:var(--gold);color:var(--gold)}.copy-prompt.copied{background:var(--gold);border-color:var(--gold);color:#090908}.load-more{margin:24px auto 0;display:flex}.hidden{display:none!important}
-    .contact{border-top:1px solid var(--line);background:#070706}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}.contact h2{font-family:"Bebas Neue",sans-serif;font-size:72px;letter-spacing:4px;color:var(--white);line-height:.95}.contact p{font-family:"Inter",sans-serif;font-size:24px;line-height:1.5;color:var(--text);margin-top:20px}.socials{display:grid;gap:10px}.socials a{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);padding:17px 18px;color:var(--muted);font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:.25s}.socials a:hover{border-color:var(--gold);color:var(--gold);padding-left:25px}.footer{border-top:1px solid var(--line);padding:24px 0;color:var(--dim);font-size:9px;letter-spacing:2px;text-transform:uppercase}.footer .container{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
-    @media(max-width:980px){.hero{grid-template-columns:1fr}.hero-photo{min-height:70vh;border-right:none;border-bottom:1px solid var(--line)}.hero-content{padding:56px 28px}.about-grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,1fr)}.stat{border-right:1px solid var(--line);border-bottom:none}.film-grid{grid-template-columns:repeat(2,1fr)}.prompt-grid,.library-grid{grid-template-columns:1fr 1fr}.contact-grid{grid-template-columns:1fr}.nav{padding:0 16px}.nav-links a{display:none}.brand span{font-size:19px}}
-    @media(max-width:620px){.loader-title{font-size:30px}.hero h1{font-size:70px}.section-pad{padding:64px 0}.container{padding:0 18px}.section-head{display:block}.section-head h2{font-size:42px;margin-bottom:14px}.bio-box{padding:26px}.bio-text p{font-size:18px}.stats{grid-template-columns:1fr}.stat{border-right:none;border-bottom:1px solid var(--line)}.film-grid,.prompt-grid,.library-grid{grid-template-columns:1fr}.contact h2{font-size:48px}.quote{font-size:24px}.photo-badge{left:18px;bottom:18px}.nav{height:60px}.brand img{width:36px;height:36px}.lang-switch{margin-left:0;padding-left:0;border-left:0}.lang-switch button{padding:8px 9px}.hero{padding-top:60px}.hero-photo{min-height:62vh}.roles div{font-size:10px}}
+    section{position:relative}
+    .container{max-width:1180px;margin:0 auto;padding:0 28px}
+
+    .hero{min-height:100vh;display:grid;grid-template-columns:.9fr 1.1fr;padding-top:68px;border-bottom:1px solid var(--line)}
+    .hero-photo{position:relative;min-height:calc(100vh - 68px);border-right:1px solid var(--line);overflow:hidden;background:#111}
+    .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(10%) contrast(1.08) brightness(.82)}
+    .hero-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 2%,transparent 48%),linear-gradient(to right,rgba(0,0,0,.2),transparent 50%)}
+
+    .photo-badge{position:absolute;left:30px;bottom:30px;border:1px solid rgba(201,168,76,.45);background:rgba(8,8,7,.72);backdrop-filter:blur(12px);padding:16px 18px;z-index:2}
+    .photo-badge small{display:block;color:var(--gold);font-size:9px;letter-spacing:2.4px;text-transform:uppercase;margin-bottom:8px}
+    .photo-badge span{font-size:24px;color:var(--white)}
+
+    .photo-guide-badge{
+      position:absolute;left:30px;top:30px;z-index:3;
+      max-width:310px;border:1px solid rgba(201,168,76,.5);
+      background:rgba(8,8,7,.74);backdrop-filter:blur(14px);
+      padding:18px;box-shadow:0 20px 60px rgba(0,0,0,.45)
+    }
+    .photo-guide-badge small{display:block;color:var(--gold);font-size:9px;letter-spacing:2.6px;text-transform:uppercase;margin-bottom:8px}
+    .photo-guide-badge strong{display:block;font-family:"Bebas Neue";font-size:31px;line-height:.95;letter-spacing:1.4px;color:var(--white)}
+    .photo-guide-badge a{margin-top:14px}
+
+    .hero-content{display:flex;align-items:center;padding:72px 8vw}
+    .eyebrow{font-size:10px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:22px}
+    .hero h1{font-family:"Bebas Neue",sans-serif;font-size:clamp(72px,10vw,148px);line-height:.86;letter-spacing:4px;color:var(--white);text-shadow:0 24px 65px rgba(0,0,0,.45)}
+    .hero h1 span{display:block;color:transparent;-webkit-text-stroke:1px var(--gold);opacity:.8}
+    .quote{font-size:clamp(24px,3vw,38px);font-style:italic;line-height:1.28;color:var(--text);max-width:680px;border-left:2px solid var(--gold);padding-left:22px;margin:26px 0 32px}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid var(--line2);padding:13px 18px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text);transition:.25s}
+    .btn:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+    .btn.gold{background:var(--gold);color:#090908;border-color:var(--gold);font-weight:600}
+    .btn.gold:hover{box-shadow:0 0 26px rgba(201,168,76,.2);color:#090908}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+
+    .free-guide-card{
+      margin:0 0 30px;
+      border:1px solid rgba(201,168,76,.48);
+      background:linear-gradient(135deg,rgba(201,168,76,.18),rgba(17,17,15,.92) 58%,rgba(0,0,0,.5));
+      padding:24px;
+      max-width:600px;
+      box-shadow:0 24px 70px rgba(0,0,0,.35),0 0 34px rgba(201,168,76,.08);
+    }
+    .free-guide-card small{display:block;color:var(--gold);font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px}
+    .free-guide-card h2{font-family:"Bebas Neue",sans-serif;font-size:46px;line-height:.92;letter-spacing:2px;color:var(--white);margin-bottom:12px}
+    .free-guide-card p{color:var(--muted);font-size:13px;line-height:1.65;margin-bottom:18px}
+    .guide-points{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+    .guide-points span{border:1px solid rgba(201,168,76,.25);padding:7px 9px;color:var(--text);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;background:rgba(0,0,0,.18)}
+
+    .section-pad{padding:96px 0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:38px;border-bottom:1px solid var(--line);padding-bottom:22px}
+    .label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+    .section-head h2{font-family:"Bebas Neue",sans-serif;font-size:56px;letter-spacing:3px;color:var(--white);font-weight:400}
+    .section-head p{max-width:440px;color:var(--muted);font-size:12px;line-height:1.7}
+
+    .about-grid{display:grid;grid-template-columns:280px 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+    .stats{background:var(--panel);display:grid}
+    .stat{padding:26px;border-bottom:1px solid var(--line)}
+    .stat:last-child{border-bottom:none}
+    .stat strong{display:block;font-size:44px;font-weight:300;color:var(--gold);line-height:1}
+    .stat span{display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-top:8px}
+    .bio-box{background:rgba(17,17,15,.75);padding:42px}
+    .bio-text{display:none}
+    .bio-text.active{display:block}
+    .bio-text h3{font-size:38px;font-weight:300;color:var(--white);margin-bottom:22px}
+    .bio-text p{font-size:20px;line-height:1.76;color:var(--text);margin-bottom:18px}
+    .final-quote{margin-top:30px;padding:24px;border-left:2px solid var(--gold);background:rgba(201,168,76,.06);font-style:italic;color:var(--white)}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px}
+    .tag{border:1px solid var(--line2);background:#0b0b0a;color:var(--muted);padding:8px 11px;font-size:9px;letter-spacing:1.5px;text-transform:uppercase}
+
+    .film-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+    .film-card{min-height:310px;background:var(--panel);padding:24px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+    .film-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(201,168,76,.15),transparent 45%);opacity:0;transition:.25s}
+    .film-card:hover:before{opacity:1}
+    .film-num{font-size:10px;color:var(--gold);letter-spacing:2px}
+    .film-card h3{font-family:"Bebas Neue";font-size:34px;letter-spacing:2px;color:var(--white);font-weight:400;position:relative}
+    .film-card p{font-size:11px;line-height:1.7;color:var(--muted);position:relative}
+    .film-meta{font-size:9px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;position:relative}
+
+    .prompt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .prompt-card{border:1px solid var(--line);background:linear-gradient(180deg,#11110f,#0b0b0a);padding:22px;transition:.25s;cursor:pointer}
+    .prompt-card:hover{border-color:var(--gold);transform:translateY(-6px);box-shadow:0 22px 55px rgba(0,0,0,.35)}
+    .prompt-card .icon{font-size:24px;margin-bottom:18px}
+    .prompt-card h3{font-family:"Bebas Neue";font-size:28px;letter-spacing:2px;color:var(--white);font-weight:400;margin-bottom:8px}
+    .prompt-card p{font-size:11px;line-height:1.7;color:var(--muted)}
+    .free-access-badge{display:inline-flex;align-items:center;gap:8px;margin-top:14px;border:1px solid rgba(201,168,76,.42);background:linear-gradient(135deg,rgba(201,168,76,.16),rgba(17,17,15,.72));color:var(--gold);padding:8px 12px;font-size:9px;letter-spacing:2px;text-transform:uppercase}
+
+    .library-tools{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0 22px}
+    .library-search{flex:1;min-width:220px;background:#0b0b0a;border:1px solid var(--line2);color:var(--text);padding:13px 15px;font-family:"JetBrains Mono";font-size:11px;outline:none}
+    .filter-btn{background:#0b0b0a;border:1px solid var(--line2);color:var(--muted);font-family:"JetBrains Mono";font-size:9px;letter-spacing:1.4px;text-transform:uppercase;padding:12px 13px;cursor:pointer;transition:.2s}
+    .filter-btn:hover,.filter-btn.active{background:var(--gold);border-color:var(--gold);color:#090908}
+    .library-meta{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--dim);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:18px}
+    .library-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .lib-card{background:linear-gradient(180deg,#11110f,#0a0a09);border:1px solid var(--line);padding:18px;min-height:230px;display:flex;flex-direction:column;gap:10px;transition:.2s}
+    .lib-card:hover{border-color:var(--gold);transform:translateY(-3px)}
+    .lib-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+    .lib-card h3{font-family:"Bebas Neue";font-size:25px;letter-spacing:1.6px;color:var(--white);font-weight:400}
+    .lib-cat{font-size:8px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.25);padding:4px 6px;white-space:nowrap}
+    .lib-desc{font-size:10px;line-height:1.55;color:var(--muted)}
+    .lib-prompt{font-family:"JetBrains Mono";font-size:10px;line-height:1.65;color:#b8b2a3;background:#070706;border:1px solid var(--line);padding:12px;flex:1}
+    .copy-prompt{align-self:flex-start;background:transparent;border:1px solid var(--line2);color:var(--muted);font-family:"JetBrains Mono";font-size:8px;letter-spacing:1.4px;text-transform:uppercase;padding:8px 10px;cursor:pointer}
+    .copy-prompt:hover{border-color:var(--gold);color:var(--gold)}
+    .copy-prompt.copied{background:var(--gold);border-color:var(--gold);color:#090908}
+    .load-more{margin:24px auto 0;display:flex}
+    .hidden{display:none!important}
+
+    .contact{border-top:1px solid var(--line);background:#070706}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+    .contact h2{font-family:"Bebas Neue";font-size:72px;letter-spacing:4px;color:var(--white);line-height:.95}
+    .contact p{font-size:24px;line-height:1.5;color:var(--text);margin-top:20px}
+    .socials{display:grid;gap:10px}
+    .socials a{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);padding:17px 18px;color:var(--muted);font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:.25s}
+    .socials a:hover{border-color:var(--gold);color:var(--gold);padding-left:25px}
+    .footer{border-top:1px solid var(--line);padding:24px 0;color:var(--dim);font-size:9px;letter-spacing:2px;text-transform:uppercase}
+    .footer .container{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+
+    @media(max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .hero-photo{min-height:70vh;border-right:none;border-bottom:1px solid var(--line)}
+      .hero-content{padding:56px 28px}
+      .about-grid{grid-template-columns:1fr}
+      .stats{grid-template-columns:repeat(3,1fr)}
+      .stat{border-right:1px solid var(--line);border-bottom:none}
+      .film-grid{grid-template-columns:repeat(2,1fr)}
+      .prompt-grid,.library-grid{grid-template-columns:1fr 1fr}
+      .contact-grid{grid-template-columns:1fr}
+      .nav{padding:0 16px}
+      .nav-links a:not(.guide-link){display:none}
+      .brand span{font-size:19px}
+    }
+    @media(max-width:620px){
+      .hero h1{font-size:70px}
+      .section-pad{padding:64px 0}
+      .container{padding:0 18px}
+      .section-head{display:block}
+      .section-head h2{font-size:42px;margin-bottom:14px}
+      .bio-box{padding:26px}
+      .bio-text p{font-size:18px}
+      .stats{grid-template-columns:1fr}
+      .stat{border-right:none;border-bottom:1px solid var(--line)}
+      .film-grid,.prompt-grid,.library-grid{grid-template-columns:1fr}
+      .contact h2{font-size:48px}
+      .quote{font-size:24px}
+      .photo-badge{left:18px;bottom:18px}
+      .photo-guide-badge{left:18px;top:18px;right:18px;max-width:none}
+      .nav{height:60px}
+      .brand img{width:36px;height:36px}
+      .lang-switch{margin-left:0;padding-left:0;border-left:0}
+      .lang-switch button{padding:8px 9px}
+      .hero{padding-top:60px}
+      .hero-photo{min-height:62vh}
+      .free-guide-card h2{font-size:38px}
+      .nav-links .guide-link{display:none}
+    }
   </style>
 </head>
+
 <body>
   <div class="loader">
     <div class="loader-inner">
@@ -71,11 +216,14 @@
       <img src="https://i.ibb.co/R8N7Hzc/20260606-013453-0000.png" alt="EA Logo" />
       <span>Ekrem Atakan</span>
     </a>
+
     <div class="nav-links">
       <a href="#about" data-tr="Hakkımda" data-en="About">Hakkımda</a>
       <a href="#films" data-tr="AI Filmler" data-en="AI Films">AI Filmler</a>
       <a href="#prompts" data-tr="Prompt Kütüphanesi" data-en="Prompt Library">Prompt Kütüphanesi</a>
+      <a class="guide-link" href="https://drive.google.com/file/d/1lqzMxArah92vA_2jxORoFVb3f3iTOcD6/view?usp=drivesdk" target="_blank" rel="noopener" data-tr="Ücretsiz Rehber" data-en="Free Guide">Ücretsiz Rehber</a>
       <a href="#contact" data-tr="İletişim" data-en="Contact">İletişim</a>
+
       <div class="lang-switch">
         <button class="active" onclick="setLang('tr', this)">TR</button>
         <button onclick="setLang('en', this)">EN</button>
@@ -87,15 +235,45 @@
     <section id="home" class="hero">
       <div class="hero-photo">
         <img src="https://i.ibb.co/Kd0hNsq/MG-20260530-174749-346.webp" alt="Ekrem Atakan" />
-        <div class="photo-badge"><small data-tr="2003'ten Bu Yana" data-en="Since 2003">2003'ten Bu Yana</small><span data-tr="İstanbul, Türkiye" data-en="Istanbul, Türkiye">İstanbul, Türkiye</span></div>
+
+        <div class="photo-guide-badge">
+          <small data-tr="Yeni Yayında" data-en="Now Available">Yeni Yayında</small>
+          <strong data-tr="Ücretsiz AI Film Rehberi" data-en="Free AI Film Guide">Ücretsiz AI Film Rehberi</strong>
+          <a class="btn gold" href="https://drive.google.com/file/d/1lqzMxArah92vA_2jxORoFVb3f3iTOcD6/view?usp=drivesdk" target="_blank" rel="noopener" data-tr="PDF'i İndir" data-en="Download PDF">PDF'i İndir</a>
+        </div>
+
+        <div class="photo-badge">
+          <small data-tr="2003'ten Bu Yana" data-en="Since 2003">2003'ten Bu Yana</small>
+          <span data-tr="İstanbul, Türkiye" data-en="Istanbul, Türkiye">İstanbul, Türkiye</span>
+        </div>
       </div>
+
       <div class="hero-content">
         <div>
+          <div class="free-guide-card">
+            <small data-tr="Ücretsiz PDF Rehber" data-en="Free PDF Guide">Ücretsiz PDF Rehber</small>
+            <h2 data-tr="Yapay Zekâ ile Sinematik Filmler Nasıl Yapılır?" data-en="How to Create Cinematic Films with AI?">Yapay Zekâ ile Sinematik Filmler Nasıl Yapılır?</h2>
+            <p data-tr="Başlangıçtan final kurguya kadar 7 aşamalı sade ve uygulanabilir AI film yapım rehberi."
+               data-en="A simple and practical 7-step AI filmmaking guide from the first idea to final edit.">
+              Başlangıçtan final kurguya kadar 7 aşamalı sade ve uygulanabilir AI film yapım rehberi.
+            </p>
+            <div class="guide-points">
+              <span>GPT Image</span>
+              <span>Seedance</span>
+              <span>Kling</span>
+              <span>Kurgu</span>
+              <span>Storytelling</span>
+            </div>
+            <a class="btn gold" href="https://drive.google.com/file/d/1lqzMxArah92vA_2jxORoFVb3f3iTOcD6/view?usp=drivesdk" target="_blank" rel="noopener" data-tr="Ücretsiz PDF'i İndir" data-en="Download Free PDF">Ücretsiz PDF'i İndir</a>
+          </div>
+
           <div class="eyebrow" data-tr="Medya Profesyoneli • AI Filmmaker" data-en="Media Professional • AI Filmmaker">Medya Profesyoneli • AI Filmmaker</div>
           <h1>Ekrem <span>Atakan</span></h1>
-          <div class="roles">
+
+          <div class="quote" data-tr='"Teknoloji değişir, araçlar değişir; ancak güçlü hikâyeler her zaman kalır."' data-en='"Technology evolves, tools change, but powerful stories remain timeless."'>
+            "Teknoloji değişir, araçlar değişir; ancak güçlü hikâyeler her zaman kalır."
           </div>
-          <div class="quote" data-tr='"Teknoloji değişir, araçlar değişir; ancak güçlü hikâyeler her zaman kalır."' data-en='"Technology evolves, tools change, but powerful stories remain timeless."'>"Teknoloji değişir, araçlar değişir; ancak güçlü hikâyeler her zaman kalır."</div>
+
           <div class="cta-row">
             <a class="btn gold" href="#about" data-tr="Biyografiyi Keşfet" data-en="Explore Biography">Biyografiyi Keşfet</a>
             <a class="btn" href="#contact" data-tr="İletişime Geç" data-en="Get In Touch">İletişime Geç</a>
@@ -107,40 +285,48 @@
     <section id="about" class="section-pad">
       <div class="container">
         <div class="section-head">
-          <div><div class="label" data-tr="Hakkımda" data-en="About">Hakkımda</div><h2 data-tr="Biyografi" data-en="Biography">Biyografi</h2></div>
-          <p data-tr="Medya tecrübesi, yapay zekâ teknolojileri ve sinematik anlatımı bir araya getiren kişisel marka alanı." data-en="A personal brand space combining media experience, AI technologies and cinematic storytelling.">Medya tecrübesi, yapay zekâ teknolojileri ve sinematik anlatımı bir araya getiren kişisel marka alanı.</p>
+          <div>
+            <div class="label" data-tr="Hakkımda" data-en="About">Hakkımda</div>
+            <h2 data-tr="Biyografi" data-en="Biography">Biyografi</h2>
+          </div>
+          <p data-tr="Medya tecrübesi, yapay zekâ teknolojileri ve sinematik anlatımı bir araya getiren kişisel marka alanı."
+             data-en="A personal brand space combining media experience, AI technologies and cinematic storytelling.">
+            Medya tecrübesi, yapay zekâ teknolojileri ve sinematik anlatımı bir araya getiren kişisel marka alanı.
+          </p>
         </div>
+
         <div class="about-grid">
           <aside class="stats">
             <div class="stat"><strong>20+</strong><span data-tr="Yıl Deneyim" data-en="Years Experience">Yıl Deneyim</span></div>
             <div class="stat"><strong>2007</strong><span data-tr="Basın Kartı" data-en="Press Card">Basın Kartı</span></div>
             <div class="stat"><strong>10+</strong><span data-tr="Global Yayıncı" data-en="Global Broadcasters">Global Yayıncı</span></div>
           </aside>
+
           <div class="bio-box">
             <article id="bio-tr" class="bio-text active">
               <h3>Ekrem Atakan</h3>
               <p>2003 yılından bu yana medya, yayıncılık ve görsel iletişim sektöründe faaliyet gösteren deneyimli bir medya profesyoneli, yapay zekâ içerik üreticisi ve görsel hikâye anlatıcısıdır.</p>
-              <p>Meslek hayatına ulusal haber yayıncılığında başlayan Atakan, kariyerinin ilk yıllarında haber editörlüğü, yayın koordinasyonu ve içerik yönetimi alanlarında görev aldı. 2007 yılından itibaren Türkiye Cumhuriyeti Cumhurbaşkanlığı İletişim Başkanlığı tarafından verilen Basın Kartı sahibidir ve medya sektöründeki çalışmalarını kesintisiz olarak sürdürmektedir.</p>
+              <p>Meslek hayatına ulusal haber yayıncılığında başlayan Atakan, kariyerinin ilk yıllarında haber editörlüğü, yayın koordinasyonu ve içerik yönetimi alanlarında görev aldı.</p>
+              <p>2007 yılından itibaren Türkiye Cumhuriyeti Cumhurbaşkanlığı İletişim Başkanlığı tarafından verilen Basın Kartı sahibidir ve medya sektöründeki çalışmalarını kesintisiz olarak sürdürmektedir.</p>
               <p>Ulusal ve uluslararası medya kuruluşlarına yönelik canlı yayın operasyonları, haber akış yönetimi, saha koordinasyonu ve yayın organizasyonlarında sorumluluk üstlenmiştir.</p>
-              <p>Kariyeri boyunca dünyanın önde gelen yayın kuruluşlarıyla çeşitli projelerde ve operasyonlarda çalışma fırsatı bulan Atakan; CNN International, BBC, ARD, ZDF, ORF, RAI, Al Jazeera, Nippon TV, NTV Russia ve SRG SSR gibi uluslararası yayın kuruluşlarının Türkiye operasyonlarında görev almıştır.</p>
-              <p>Canlı yayın teknolojileri, haber operasyonları, prodüksiyon yönetimi ve medya organizasyonu alanlarında yirmi yılı aşkın tecrübeye sahip olan Atakan, halen Türkiye'nin önde gelen kamu yayın kuruluşlarından birinde profesyonel kariyerini sürdürmektedir.</p>
-              <p>Son yıllarda çalışmalarını üretken yapay zekâ, dijital hikâye anlatımı ve sinematik içerik üretimi üzerine yoğunlaştıran Atakan; yapay zekâ destekli kısa filmler, sinematik videolar, görsel tasarım projeleri ve yeni medya teknolojileri üzerine çalışmalar yürütmektedir.</p>
-              <p>Özellikle GPT-Image, Seedance, Kling, Higgsfield ve Suno gibi üretken yapay zekâ araçlarını kullanarak özgün hikâyeler, kısa filmler ve deneysel sinematik projeler geliştirmektedir. Yapay zekâyı yalnızca bir araç olarak değil, yeni nesil görsel anlatımın önemli bir ortağı olarak görmektedir.</p>
-              <p>Bugün çalışmalarını medya tecrübesi ile yapay zekâ teknolojilerini bir araya getirerek; eğitim, içerik üretimi, dijital hikâye anlatımı ve AI Filmmaking alanlarında sürdürmektedir.</p>
+              <p>Kariyeri boyunca CNN International, BBC, ARD, ZDF, ORF, RAI, Al Jazeera, Nippon TV, NTV Russia ve SRG SSR gibi uluslararası yayın kuruluşlarının Türkiye operasyonlarında görev almıştır.</p>
+              <p>Son yıllarda çalışmalarını üretken yapay zekâ, dijital hikâye anlatımı ve sinematik içerik üretimi üzerine yoğunlaştıran Atakan; yapay zekâ destekli kısa filmler, sinematik videolar ve yeni medya teknolojileri üzerine çalışmalar yürütmektedir.</p>
+              <p>Yapay zekâyı yalnızca bir araç olarak değil, yeni nesil görsel anlatımın önemli bir ortağı olarak görmektedir.</p>
               <p class="final-quote">"Teknoloji değişir, araçlar değişir; ancak güçlü hikâyeler her zaman kalır."</p>
             </article>
+
             <article id="bio-en" class="bio-text">
               <h3>Ekrem Atakan</h3>
               <p>Ekrem Atakan is an experienced media professional, AI content creator, and visual storyteller who has been active in the media, broadcasting, and visual communication industry since 2003.</p>
-              <p>Beginning his career in national news broadcasting, Atakan held roles in news editing, broadcast coordination, and content management during the early stages of his professional journey. Since 2007, he has been a holder of the official Press Card issued by the Directorate of Communications of the Presidency of the Republic of Türkiye and has continued his work in the media industry without interruption.</p>
-              <p>Throughout his career, he has been responsible for live broadcast operations, news flow management, field coordination, and broadcast organization for both national and international media organizations.</p>
-              <p>Atakan has had the opportunity to collaborate on various projects and operations with some of the world's leading broadcasters, including CNN International, BBC, ARD, ZDF, ORF, RAI, Al Jazeera, Nippon TV, NTV Russia, and SRG SSR, contributing to their operations in Türkiye.</p>
-              <p>With more than two decades of experience in live broadcasting technologies, news operations, production management, and media organization, Atakan currently continues his professional career at one of Türkiye's leading public broadcasting institutions.</p>
-              <p>In recent years, he has focused his work on generative artificial intelligence, digital storytelling, and cinematic content creation. His projects span AI-powered short films, cinematic videos, visual design, and emerging media technologies.</p>
-              <p>Using generative AI tools such as GPT-Image, Seedance, Kling, Higgsfield, and Suno, Atakan develops original stories, short films, and experimental cinematic projects. He views artificial intelligence not merely as a tool, but as a creative partner in the next generation of visual storytelling.</p>
-              <p>Today, he combines his extensive media experience with cutting-edge AI technologies, working in the fields of education, content creation, digital storytelling, and AI filmmaking.</p>
+              <p>Beginning his career in national news broadcasting, Atakan held roles in news editing, broadcast coordination, and content management.</p>
+              <p>Since 2007, he has been a holder of the official Press Card issued by the Directorate of Communications of the Presidency of the Republic of Türkiye.</p>
+              <p>Throughout his career, he has worked on live broadcast operations, news flow management, field coordination, and broadcast organization for national and international media organizations.</p>
+              <p>He has contributed to Türkiye operations of CNN International, BBC, ARD, ZDF, ORF, RAI, Al Jazeera, Nippon TV, NTV Russia, and SRG SSR.</p>
+              <p>In recent years, he has focused on generative artificial intelligence, digital storytelling, cinematic content creation, AI-powered short films, and emerging media technologies.</p>
+              <p>He views artificial intelligence not merely as a tool, but as a creative partner in the next generation of visual storytelling.</p>
               <p class="final-quote">"Technology evolves, tools change, but powerful stories remain timeless."</p>
             </article>
+
             <div class="tags">
               <span class="tag">CNN International</span><span class="tag">BBC</span><span class="tag">ARD</span><span class="tag">ZDF</span><span class="tag">ORF</span><span class="tag">RAI</span><span class="tag">Al Jazeera</span><span class="tag">Nippon TV</span><span class="tag">NTV Russia</span><span class="tag">SRG SSR</span>
             </div>
@@ -152,59 +338,69 @@
     <section id="films" class="section-pad">
       <div class="container">
         <div class="section-head">
-          <div><div class="label" data-tr="Öne Çıkan Projeler" data-en="Selected Work">Öne Çıkan Projeler</div><h2 data-tr="AI Filmler" data-en="AI Films">AI Filmler</h2></div>
-          <p data-tr="Kısa filmler, sinematik konseptler, deneysel AI videoları ve yeni medya projeleri." data-en="Short films, cinematic concepts, experimental AI videos and new media projects.">Kısa filmler, sinematik konseptler, deneysel AI videoları ve yeni medya projeleri.</p>
+          <div>
+            <div class="label" data-tr="Öne Çıkan Projeler" data-en="Selected Work">Öne Çıkan Projeler</div>
+            <h2 data-tr="AI Filmler" data-en="AI Films">AI Filmler</h2>
+          </div>
+          <p data-tr="Kısa filmler, sinematik konseptler, deneysel AI videoları ve yeni medya projeleri."
+             data-en="Short films, cinematic concepts, experimental AI videos and new media projects.">
+            Kısa filmler, sinematik konseptler, deneysel AI videoları ve yeni medya projeleri.
+          </p>
         </div>
-        
 
-<div class="film-grid">
+        <div class="film-grid">
+          <a class="film-card" href="https://www.instagram.com/reel/DSHyIyWCNub/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener">
+            <div class="film-num">01</div>
+            <h3>BEN</h3>
+            <p data-tr='"BEN"e Yolculuk. Kimlik, bilinç ve içsel keşif üzerine sinematik kısa film denemesi.' data-en='A cinematic short-film experiment exploring identity, consciousness and the inner self.'>"BEN"e Yolculuk. Kimlik, bilinç ve içsel keşif üzerine sinematik kısa film denemesi.</p>
+            <div class="film-meta" data-tr="Sinematik Kısa Film Denemesi" data-en="Cinematic Short Experiment">Sinematik Kısa Film Denemesi</div>
+          </a>
 
-<a class="film-card" href="https://www.instagram.com/reel/DSHyIyWCNub/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener">
-<div class="film-num">01</div>
-<h3>BEN</h3>
-<p data-tr='"BEN"e Yolculuk. Kimlik, bilinç ve içsel keşif üzerine sinematik kısa film denemesi.' data-en='A cinematic short-film experiment exploring identity, consciousness and the inner self.'>"BEN"e Yolculuk. Kimlik, bilinç ve içsel keşif üzerine sinematik kısa film denemesi.</p>
-<div class="film-meta" data-tr="Sinematik Kısa Film Denemesi" data-en="Cinematic Short Experiment">Sinematik Kısa Film Denemesi</div>
-</a>
+          <a class="film-card" href="https://www.instagram.com/reel/DZKVsnQoYbd/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener">
+            <div class="film-num">02</div>
+            <h3>KALAN</h3>
+            <p data-tr="Sinemanın şiirsel dilinden ilham alan deneysel bir yapay zekâ kısa filmi." data-en="An experimental AI short film inspired by the poetic language of cinema.">Sinemanın şiirsel dilinden ilham alan deneysel bir yapay zekâ kısa filmi.</p>
+            <div class="film-meta" data-tr="Deneysel AI Kısa Film" data-en="Experimental AI Short">Deneysel AI Kısa Film</div>
+          </a>
 
-<a class="film-card" href="https://www.instagram.com/reel/DZKVsnQoYbd/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener">
-<div class="film-num">02</div>
-<h3>KALAN</h3>
-<p data-tr="Sinemanın şiirsel dilinden ilham alan deneysel bir yapay zekâ kısa filmi." data-en="An experimental AI short film inspired by the poetic language of cinema.">Sinemanın şiirsel dilinden ilham alan deneysel bir yapay zekâ kısa filmi.</p>
-<div class="film-meta" data-tr="Deneysel AI Kısa Film" data-en="Experimental AI Short">Deneysel AI Kısa Film</div>
-</a>
+          <a class="film-card" href="https://www.instagram.com/reel/DYOwyICg8S9/?igsh=MXc4a2FraW44MWtkeA==" target="_blank" rel="noopener">
+            <div class="film-num">03</div>
+            <h3>İSTANBUL</h3>
+            <p data-tr="Mistik İstanbul ruhunu deneysel görsel anlatımla buluşturduğum İstanbul klibi." data-en="An Istanbul clip where I bring the mystical spirit of Istanbul together with experimental visual storytelling.">Mistik İstanbul ruhunu deneysel görsel anlatımla buluşturduğum İstanbul klibi.</p>
+            <div class="film-meta" data-tr="Stop Motion Projesi" data-en="Stop Motion Project">Stop Motion Projesi</div>
+          </a>
 
-<a class="film-card" href="https://www.instagram.com/reel/DYOwyICg8S9/?igsh=MXc4a2FraW44MWtkeA==" target="_blank" rel="noopener">
-<div class="film-num">03</div>
-<h3>İSTANBUL</h3>
-<p data-tr="Mistik İstanbul ruhunu deneysel görsel anlatımla buluşturduğum İstanbul klibi." data-en="An Istanbul clip where I bring the mystical spirit of Istanbul together with experimental visual storytelling.">Mistik İstanbul ruhunu deneysel görsel anlatımla buluşturduğum İstanbul klibi.</p>
-<div class="film-meta" data-tr="Stop Motion Projesi" data-en="Stop Motion Project">Stop Motion Projesi</div>
-</a>
-
-<a class="film-card" href="https://www.instagram.com/ekrematakan/" target="_blank" rel="noopener">
-<div class="film-num">04</div>
-<h3 data-tr="GELECEK PROJELER" data-en="FUTURE PROJECTS">GELECEK PROJELER</h3>
-<p data-tr="Üretken yapay zekâ ile geliştirilen yeni dünyalar, yeni hikâyeler ve yeni sinematik deneyler." data-en="New worlds, new stories and cinematic experiments crafted with generative AI.">Üretken yapay zekâ ile geliştirilen yeni dünyalar, yeni hikâyeler ve yeni sinematik deneyler.</p>
-<div class="film-meta" data-tr="Daha Fazla Proje" data-en="View More Projects">Daha Fazla Proje</div>
-</a>
-
-</div>
+          <a class="film-card" href="https://www.instagram.com/ekrematakan/" target="_blank" rel="noopener">
+            <div class="film-num">04</div>
+            <h3 data-tr="GELECEK PROJELER" data-en="FUTURE PROJECTS">GELECEK PROJELER</h3>
+            <p data-tr="Üretken yapay zekâ ile geliştirilen yeni dünyalar, yeni hikâyeler ve yeni sinematik deneyler." data-en="New worlds, new stories and cinematic experiments crafted with generative AI.">Üretken yapay zekâ ile geliştirilen yeni dünyalar, yeni hikâyeler ve yeni sinematik deneyler.</p>
+            <div class="film-meta" data-tr="Daha Fazla Proje" data-en="View More Projects">Daha Fazla Proje</div>
+          </a>
+        </div>
       </div>
     </section>
 
     <section id="prompts" class="section-pad">
       <div class="container">
         <div class="section-head">
-          <div><div class="label" data-tr="500+ Kütüphane" data-en="500+ Library">500+ Kütüphane</div><h2 data-tr="Sinematik Prompt Kütüphanesi" data-en="Cinematic Prompt Library">Sinematik Prompt Kütüphanesi</h2></div>
-          <p data-tr="Kategori filtreli, aramalı ve tek tıkla kopyalanabilir sinematik AI prompt arşivi." data-en="A searchable, category-filtered and one-click copy cinematic AI prompt archive.">Kategori filtreli, aramalı ve tek tıkla kopyalanabilir sinematik AI prompt arşivi.</p>
+          <div>
+            <div class="label" data-tr="500+ Kütüphane" data-en="500+ Library">500+ Kütüphane</div>
+            <h2 data-tr="Sinematik Prompt Kütüphanesi" data-en="Cinematic Prompt Library">Sinematik Prompt Kütüphanesi</h2>
+          </div>
+          <p data-tr="Kategori filtreli, aramalı ve tek tıkla kopyalanabilir sinematik AI prompt arşivi."
+             data-en="A searchable, category-filtered and one-click copy cinematic AI prompt archive.">
+            Kategori filtreli, aramalı ve tek tıkla kopyalanabilir sinematik AI prompt arşivi.
+          </p>
           <div class="free-access-badge" data-tr="Ücretsiz Erişim" data-en="Free Access">Ücretsiz Erişim</div>
         </div>
+
         <div class="prompt-grid">
-          <article class="prompt-card category-link camera-card" data-target="Camera"><div class="icon">🎥</div><h3 data-tr="Kamera Hareketleri" data-en="Camera Work">Kamera Hareketleri</h3><p data-tr="Drone, dolly, POV, tracking, orbit, macro ve sinematik kamera dili." data-en="Drone, dolly, POV, tracking, orbit, macro and cinematic movement language.">Drone, dolly, POV, tracking, orbit, macro ve sinematik kamera dili.</p></article>
-          <article class="prompt-card category-link lighting-card" data-target="Lighting"><div class="icon">💡</div><h3 data-tr="Işıklandırma" data-en="Lighting">Işıklandırma</h3><p data-tr="Golden hour, low-key, chiaroscuro, pratik ışık ve sinematik kontrast." data-en="Golden hour, low-key, chiaroscuro, practical light and cinematic contrast.">Golden hour, low-key, chiaroscuro, pratik ışık ve sinematik kontrast.</p></article>
-          <article class="prompt-card category-link composition-card" data-target="Composition"><div class="icon">🎨</div><h3 data-tr="Kompozisyon" data-en="Composition">Kompozisyon</h3><p data-tr="Simetri, negatif alan, yön çizgileri, çerçeve içinde çerçeve ve görsel ağırlık." data-en="Symmetry, negative space, leading lines, frame within frame and visual weight.">Simetri, negatif alan, yön çizgileri, çerçeve içinde çerçeve ve görsel ağırlık.</p></article>
-          <article class="prompt-card category-link atmosphere-card" data-target="Atmosphere"><div class="icon">🌫</div><h3 data-tr="Atmosfer" data-en="Atmosphere">Atmosfer</h3><p data-tr="Sis, yağmur, toz, duman, partiküller, duygu ve çevresel hikâye anlatımı." data-en="Fog, rain, dust, smoke, particles, mood and environmental storytelling.">Sis, yağmur, toz, duman, partiküller, duygu ve çevresel hikâye anlatımı.</p></article>
-          <article class="prompt-card category-link editing-card" data-target="Editing"><div class="icon">✂️</div><h3 data-tr="Kurgu" data-en="Editing">Kurgu</h3><p data-tr="Montaj ritmi, match cut, crash zoom, siyah kareler ve fragman temposu." data-en="Montage rhythm, match cuts, crash zooms, black frames and trailer pacing.">Montaj ritmi, match cut, crash zoom, siyah kareler ve fragman temposu.</p></article>
-          <article class="prompt-card category-link storytelling-card" data-target="Storytelling"><div class="icon">📖</div><h3 data-tr="Hikâye Anlatımı" data-en="Storytelling">Hikâye Anlatımı</h3><p data-tr="Evren kurma, karakter duygusu, görsel akışlar ve AI filmmaking iş akışları." data-en="Worldbuilding, character emotion, visual arcs and AI filmmaking workflows.">Evren kurma, karakter duygusu, görsel akışlar ve AI filmmaking iş akışları.</p></article>
+          <article class="prompt-card category-link" data-target="Camera"><div class="icon">🎥</div><h3 data-tr="Kamera Hareketleri" data-en="Camera Work">Kamera Hareketleri</h3><p data-tr="Drone, dolly, POV, tracking, orbit, macro ve sinematik kamera dili." data-en="Drone, dolly, POV, tracking, orbit, macro and cinematic movement language.">Drone, dolly, POV, tracking, orbit, macro ve sinematik kamera dili.</p></article>
+          <article class="prompt-card category-link" data-target="Lighting"><div class="icon">💡</div><h3 data-tr="Işıklandırma" data-en="Lighting">Işıklandırma</h3><p data-tr="Golden hour, low-key, chiaroscuro, pratik ışık ve sinematik kontrast." data-en="Golden hour, low-key, chiaroscuro, practical light and cinematic contrast.">Golden hour, low-key, chiaroscuro, pratik ışık ve sinematik kontrast.</p></article>
+          <article class="prompt-card category-link" data-target="Composition"><div class="icon">🎨</div><h3 data-tr="Kompozisyon" data-en="Composition">Kompozisyon</h3><p data-tr="Simetri, negatif alan, yön çizgileri, çerçeve içinde çerçeve ve görsel ağırlık." data-en="Symmetry, negative space, leading lines, frame within frame and visual weight.">Simetri, negatif alan, yön çizgileri, çerçeve içinde çerçeve ve görsel ağırlık.</p></article>
+          <article class="prompt-card category-link" data-target="Atmosphere"><div class="icon">🌫</div><h3 data-tr="Atmosfer" data-en="Atmosphere">Atmosfer</h3><p data-tr="Sis, yağmur, toz, duman, partiküller, duygu ve çevresel hikâye anlatımı." data-en="Fog, rain, dust, smoke, particles, mood and environmental storytelling.">Sis, yağmur, toz, duman, partiküller, duygu ve çevresel hikâye anlatımı.</p></article>
+          <article class="prompt-card category-link" data-target="Editing"><div class="icon">✂️</div><h3 data-tr="Kurgu" data-en="Editing">Kurgu</h3><p data-tr="Montaj ritmi, match cut, crash zoom, siyah kareler ve fragman temposu." data-en="Montage rhythm, match cuts, crash zooms, black frames and trailer pacing.">Montaj ritmi, match cut, crash zoom, siyah kareler ve fragman temposu.</p></article>
+          <article class="prompt-card category-link" data-target="Storytelling"><div class="icon">📖</div><h3 data-tr="Hikâye Anlatımı" data-en="Storytelling">Hikâye Anlatımı</h3><p data-tr="Evren kurma, karakter duygusu, görsel akışlar ve AI filmmaking iş akışları." data-en="Worldbuilding, character emotion, visual arcs and AI filmmaking workflows.">Evren kurma, karakter duygusu, görsel akışlar ve AI filmmaking iş akışları.</p></article>
         </div>
 
         <div class="library-tools">
@@ -216,11 +412,13 @@
           <button class="filter-btn" data-cat="Atmosphere" data-tr="Atmosfer" data-en="Atmosphere">Atmosfer</button>
           <button class="filter-btn" data-cat="Editing" data-tr="Kurgu" data-en="Editing">Kurgu</button>
           <button class="filter-btn" data-cat="Storytelling" data-tr="Hikâye Anlatımı" data-en="Storytelling">Hikâye Anlatımı</button>
-          <button class="filter-btn" data-cat="Sci-Fi" data-tr="Bilim Kurgu" data-en="Sci-Fi">Bilim Kurgu</button>
-          <button class="filter-btn" data-cat="FPV Drone" data-tr="FPV Drone" data-en="FPV Drone">FPV Drone</button>
-          <button class="filter-btn" data-cat="Game Trailer" data-tr="Oyun Fragmanı" data-en="Game Trailer">Oyun Fragmanı</button>
         </div>
-        <div class="library-meta"><span id="libraryCount">— prompts</span><span data-tr="[SUBJECT] alanını sahnen, karakterin veya evreninle değiştir." data-en="Replace [SUBJECT] with your scene, character or world.">[SUBJECT] alanını sahnen, karakterin veya evreninle değiştir.</span></div>
+
+        <div class="library-meta">
+          <span id="libraryCount">— prompts</span>
+          <span data-tr="[SUBJECT] alanını sahnen, karakterin veya evreninle değiştir." data-en="Replace [SUBJECT] with your scene, character or world.">[SUBJECT] alanını sahnen, karakterin veya evreninle değiştir.</span>
+        </div>
+
         <div id="libraryGrid" class="library-grid"></div>
         <button id="loadMore" class="btn load-more" data-tr="Daha Fazla Yükle" data-en="Load More">Daha Fazla Yükle</button>
       </div>
@@ -231,8 +429,12 @@
         <div>
           <div class="label" data-tr="İletişim" data-en="Contact">İletişim</div>
           <h2 data-tr="Yeni Dünyalar İnşa Edelim." data-en="Let's Build New Worlds.">Yeni Dünyalar İnşa Edelim.</h2>
-          <p data-tr="AI film, sinematik video, eğitim, içerik üretimi ve yaratıcı iş birlikleri için iletişime geçebilirsiniz." data-en="For AI film, cinematic video, education, content creation and creative collaborations, feel free to get in touch.">AI film, sinematik video, eğitim, içerik üretimi ve yaratıcı iş birlikleri için iletişime geçebilirsiniz.</p>
+          <p data-tr="AI film, sinematik video, eğitim, içerik üretimi ve yaratıcı iş birlikleri için iletişime geçebilirsiniz."
+             data-en="For AI film, cinematic video, education, content creation and creative collaborations, feel free to get in touch.">
+            AI film, sinematik video, eğitim, içerik üretimi ve yaratıcı iş birlikleri için iletişime geçebilirsiniz.
+          </p>
         </div>
+
         <div class="socials">
           <a href="mailto:info@ekrematakan.com"><span>Email</span><strong>info@ekrematakan.com</strong></a>
           <a href="https://www.instagram.com/ekrematakan" target="_blank" rel="noopener noreferrer"><span>Instagram</span><strong>@ekrematakan</strong></a>
@@ -244,39 +446,32 @@
   </main>
 
   <footer class="footer">
-    <div class="container"><span>© 2026 Ekrem Atakan</span><span>Media Professional • AI Filmmaker • Visual Storyteller</span></div>
+    <div class="container">
+      <span>© 2026 Ekrem Atakan</span>
+      <span>Media Professional • AI Filmmaker • Visual Storyteller</span>
+    </div>
   </footer>
 
   <script>
-
     const basePrompts = [
       {cat:'Camera', name:'Hero Arrival', desc:'Powerful entrance shot for characters and brand films.', prompt:'Epic cinematic hero arrival of [SUBJECT], low-angle camera slowly pushing forward, golden volumetric sunlight, atmospheric haze, anamorphic lens flare, ultra realistic texture, ARRI Alexa 65 look, premium cinematic color grade.'},
       {cat:'Camera', name:'Slow Push-In', desc:'Builds emotional pressure without cutting.', prompt:'Slow emotional push-in toward [SUBJECT], camera moving almost imperceptibly forward, shallow depth of field, subtle breathing motion, cinematic realism, increasing emotional intensity.'},
       {cat:'Camera', name:'Epic Pull-Out', desc:'Reveals scale and isolation.', prompt:'Camera slowly pulling away from [SUBJECT], revealing a massive environment around them, atmospheric perspective, emotional isolation, epic scale, realistic cinematic movement.'},
       {cat:'Camera', name:'360 Orbit Reveal', desc:'Circular motion for heroic moments.', prompt:'360-degree cinematic orbit around [SUBJECT], dramatic lighting, shallow depth of field, background parallax, epic atmosphere, smooth camera movement, premium film look.'},
       {cat:'Camera', name:'Macro Insert', desc:'Object detail and storytelling cutaway.', prompt:'Extreme macro insert shot of [SUBJECT], razor-thin focus, detailed texture, practical warm light, cinematic shadows, intimate visual storytelling, 100mm macro lens look.'},
-      {cat:'Camera', name:'Low Angle Hero', desc:'Makes the subject dominant and iconic.', prompt:'Low-angle hero shot of [SUBJECT], camera near ground level looking upward, dramatic sky, rim light, powerful silhouette, cinematic contrast, wide lens perspective.'},
       {cat:'Lighting', name:'Golden Hour Myth', desc:'Warm premium light for emotional scenes.', prompt:'Golden hour lighting on [SUBJECT], warm amber backlight, long shadows, dust particles glowing in the air, anamorphic flare, cinematic realism, Kodak Vision3 warmth.'},
       {cat:'Lighting', name:'Blue Hour Melancholy', desc:'Cool twilight with warm practical contrast.', prompt:'Blue hour cinematic shot of [SUBJECT], deep cobalt atmosphere, warm practical lights in the background, soft haze, emotional melancholy, realistic film grain.'},
       {cat:'Lighting', name:'Chiaroscuro Portrait', desc:'Painterly contrast inspired by classic cinema.', prompt:'Chiaroscuro portrait of [SUBJECT], single warm light source, deep black shadows, face partially illuminated, painterly cinematic contrast, dramatic and timeless mood.'},
-      {cat:'Lighting', name:'Blade Runner Neon', desc:'Colorful futuristic urban lighting.', prompt:'Neon-lit cinematic scene of [SUBJECT], magenta and cyan reflections on wet surfaces, smoke in the air, futuristic city ambience, high contrast, cyberpunk realism.'},
       {cat:'Composition', name:'Symmetry Ritual', desc:'Formal, centered, iconic composition.', prompt:'Perfect symmetrical composition of [SUBJECT] centered in the frame, one-point perspective, architectural lines leading inward, cinematic stillness, ritualistic visual power.'},
       {cat:'Composition', name:'Negative Space', desc:'Creates solitude and premium minimalism.', prompt:'Minimal cinematic composition with [SUBJECT] occupying a small part of the frame, vast negative space, quiet emotional atmosphere, elegant visual balance, large format look.'},
-      {cat:'Composition', name:'Frame Within Frame', desc:'Adds depth and mystery.', prompt:'Frame within frame composition of [SUBJECT] seen through a doorway, arch or window, layered depth, voyeuristic atmosphere, soft background light, cinematic realism.'},
       {cat:'Atmosphere', name:'Tarkovsky Rain Memory', desc:'Poetic slow cinema mood.', prompt:'Abandoned countryside house during light rain, water drops on old windows, overgrown vegetation, poetic atmosphere, contemplative silence, natural soft light, Tarkovsky-inspired realism.'},
       {cat:'Atmosphere', name:'Desert Dust Dream', desc:'Dune-like scale and heat.', prompt:'Endless desert around [SUBJECT], golden dust in the air, heat distortion, giant dunes, epic science fiction atmosphere, Denis Villeneuve-inspired visual scale.'},
-      {cat:'Atmosphere', name:'Foggy Lost World', desc:'Mystery reveal through fog.', prompt:'[SUBJECT] emerging from dense cinematic fog, muted colors, soft silhouettes, atmospheric particles, mysterious ancient world feeling, slow reveal composition.'},
       {cat:'Editing', name:'Trailer Black Frames', desc:'Punchy trailer rhythm.', prompt:'Cinematic trailer sequence of [SUBJECT] with millisecond black-frame cuts between impactful moments, rising tension, bass hit energy, dramatic pacing, premium movie trailer style.'},
       {cat:'Editing', name:'Match Cut Transformation', desc:'Connects two worlds visually.', prompt:'Match cut transition from [SUBJECT] to a visually similar object or environment, seamless cinematic transformation, emotional continuity, elegant editing rhythm.'},
       {cat:'Storytelling', name:'One Man One Destiny', desc:'Heroic narrative setup.', prompt:'One man standing alone against impossible odds, [SUBJECT] framed as a symbol of destiny, massive environment, dramatic sky, emotional blockbuster storytelling.'},
-      {cat:'Storytelling', name:'Final Transmission', desc:'Sci-fi emotional ending.', prompt:'The final message from [SUBJECT] before the collapse, flickering screens, ruined control room, emotional silence, cinematic science fiction tension.'},
-      {cat:'Sci-Fi', name:'AI Cathedral', desc:'Spiritual machine architecture.', prompt:'Gigantic artificial intelligence core inside a cathedral-like megastructure, glowing neural architecture, volumetric light beams, epic science fiction realism, sacred machine atmosphere.'},
-      {cat:'Sci-Fi', name:'Machine Awakening', desc:'Ancient AI comes alive.', prompt:'Ancient AI system slowly activating beneath a destroyed megacity, red lights emerging from darkness, cinematic shadows, dramatic tension, futuristic realism.'},
-      {cat:'FPV Drone', name:'Desert FPV Run', desc:'Fast dune flight.', prompt:'High-speed FPV drone skimming above endless desert dunes, golden sand waves, sunset light, realistic motion blur, epic science fiction atmosphere, breathtaking scale.'},
-      {cat:'FPV Drone', name:'Forest Dive', desc:'Natural speed and immersion.', prompt:'FPV drone diving from above a giant pine forest, weaving between trees, morning mist filling the valley, realistic speed sensation, cinematic natural light.'},
-      {cat:'Game Trailer', name:'Ancient Gate Reveal', desc:'AAA game intro shot.', prompt:'Cinematic game trailer reveal of [SUBJECT] approaching a colossal ancient gate, dust, dramatic backlight, massive scale, slow push-in, epic orchestral energy.'},
-      {cat:'Game Trailer', name:'Boss Arena Arrival', desc:'High-impact fantasy reveal.', prompt:'[SUBJECT] entering a gigantic boss arena, burning torches, enormous silhouette ahead, cinematic camera pullback, dark fantasy atmosphere, AAA game trailer style.'}
+      {cat:'Storytelling', name:'Final Transmission', desc:'Sci-fi emotional ending.', prompt:'The final message from [SUBJECT] before the collapse, flickering screens, ruined control room, emotional silence, cinematic science fiction tension.'}
     ];
+
     const variants = [
       'ultra realistic detail, cinematic color grading, atmospheric depth',
       'slow camera movement, premium film grain, emotional lighting',
@@ -287,18 +482,9 @@
       'minimal luxury aesthetic, controlled shadows, soft highlight rolloff',
       'epic worldbuilding, powerful silhouette, cinematic storytelling',
       'documentary realism mixed with blockbuster visual language',
-      'dreamlike atmosphere, poetic realism, tactile environmental detail',
-      'dark futuristic tone, glowing practical lights, subtle particles',
-      'sunset backlight, dust trails, emotional heroic framing',
-      'cold blue ambience, warm practical accents, melancholic mood',
-      'high contrast shadows, painterly light, timeless cinema texture',
-      'trailer-ready visual impact, intense pacing, dramatic atmosphere',
-      'large format lens look, shallow depth of field, immersive realism',
-      'ancient civilization mood, mysterious ruins, atmospheric reveal',
-      'rain-soaked surfaces, reflections, quiet cinematic tension',
-      'massive desert scale, golden haze, mythic science fiction tone',
-      'slow cinema patience, natural sound feeling, contemplative frame'
+      'dreamlike atmosphere, poetic realism, tactile environmental detail'
     ];
+
     const promptData = [];
     for(let i=0;i<520;i++){
       const b = basePrompts[i % basePrompts.length];
@@ -311,48 +497,88 @@
         prompt:`${b.prompt} Add: ${v}. Version ${n}, optimized for GPT-Image, Kling, Seedance and cinematic AI video generation.`
       });
     }
-    let activeCat = 'all', shown = 36, currentLang = 'tr';
+
+    let activeCat = 'all';
+    let shown = 36;
+    let currentLang = 'tr';
+
     function filteredPrompts(){
       const q = (document.getElementById('promptSearch')?.value || '').toLowerCase().trim();
-      return promptData.filter(p => (activeCat === 'all' || p.cat === activeCat) && (!q || `${p.cat} ${p.name} ${p.desc} ${p.prompt}`.toLowerCase().includes(q)));
+      return promptData.filter(p =>
+        (activeCat === 'all' || p.cat === activeCat) &&
+        (!q || `${p.cat} ${p.name} ${p.desc} ${p.prompt}`.toLowerCase().includes(q))
+      );
     }
+
     function renderPrompts(reset=false){
       const grid = document.getElementById('libraryGrid');
       if(!grid) return;
       if(reset) shown = 36;
+
       const data = filteredPrompts();
-      document.getElementById('libraryCount').textContent = currentLang === 'tr' ? `${data.length} prompt bulundu / 520+ toplam` : `${data.length} prompts found / 520+ total`;
-      grid.innerHTML = data.slice(0, shown).map((p,idx)=>`<article class="lib-card"><div class="lib-card-top"><h3>${p.name}</h3><span class="lib-cat">${p.cat}</span></div><p class="lib-desc">${p.desc}</p><div class="lib-prompt">${p.prompt}</div><button class="copy-prompt" data-index="${idx}">${currentLang === 'tr' ? 'Promptu Kopyala' : 'Copy Prompt'}</button></article>`).join('');
+      document.getElementById('libraryCount').textContent =
+        currentLang === 'tr'
+          ? `${data.length} prompt bulundu / 520+ toplam`
+          : `${data.length} prompts found / 520+ total`;
+
+      grid.innerHTML = data.slice(0, shown).map((p,idx)=>`
+        <article class="lib-card">
+          <div class="lib-card-top">
+            <h3>${p.name}</h3>
+            <span class="lib-cat">${p.cat}</span>
+          </div>
+          <p class="lib-desc">${p.desc}</p>
+          <div class="lib-prompt">${p.prompt}</div>
+          <button class="copy-prompt" data-index="${idx}">
+            ${currentLang === 'tr' ? 'Promptu Kopyala' : 'Copy Prompt'}
+          </button>
+        </article>
+      `).join('');
+
       document.getElementById('loadMore').classList.toggle('hidden', shown >= data.length);
     }
+
     document.addEventListener('click', e=>{
       if(e.target.matches('.filter-btn')){
         document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-        e.target.classList.add('active'); activeCat = e.target.dataset.cat; renderPrompts(true);
+        e.target.classList.add('active');
+        activeCat = e.target.dataset.cat;
+        renderPrompts(true);
       }
-      if(e.target.matches('#loadMore')){ shown += 36; renderPrompts(); }
+
+      if(e.target.matches('#loadMore')){
+        shown += 36;
+        renderPrompts();
+      }
+
       if(e.target.matches('.copy-prompt')){
         const card = e.target.closest('.lib-card');
         const text = card.querySelector('.lib-prompt').textContent;
-        navigator.clipboard.writeText(text).then(()=>{ e.target.textContent = currentLang === 'tr' ? 'Kopyalandı' : 'Copied'; e.target.classList.add('copied'); setTimeout(()=>{e.target.textContent = currentLang === 'tr' ? 'Promptu Kopyala' : 'Copy Prompt'; e.target.classList.remove('copied')},1200); });
+        navigator.clipboard.writeText(text).then(()=>{
+          e.target.textContent = currentLang === 'tr' ? 'Kopyalandı' : 'Copied';
+          e.target.classList.add('copied');
+          setTimeout(()=>{
+            e.target.textContent = currentLang === 'tr' ? 'Promptu Kopyala' : 'Copy Prompt';
+            e.target.classList.remove('copied');
+          },1200);
+        });
+      }
+
+      const card = e.target.closest('.category-link');
+      if(card){
+        const category = card.dataset.target;
+        document.querySelectorAll('.filter-btn').forEach(btn=>{
+          btn.classList.remove('active');
+          if(btn.dataset.cat === category) btn.classList.add('active');
+        });
+        activeCat = category;
+        renderPrompts(true);
+        document.getElementById('prompts')?.scrollIntoView({behavior:'smooth', block:'start'});
       }
     });
-    document.addEventListener('input', e=>{ if(e.target.matches('#promptSearch')) renderPrompts(true); });
-    window.addEventListener('DOMContentLoaded', ()=>renderPrompts(true));
 
-
-    document.addEventListener('click', e=>{
-      const card = e.target.closest('.category-link');
-      if(!card) return;
-      const category = card.dataset.target;
-      const promptsSection = document.getElementById('prompts');
-      document.querySelectorAll('.filter-btn').forEach(btn=>{
-        btn.classList.remove('active');
-        if(btn.dataset.cat === category){ btn.classList.add('active'); }
-      });
-      activeCat = category;
-      renderPrompts(true);
-      if(promptsSection){ promptsSection.scrollIntoView({behavior:'smooth', block:'start'}); }
+    document.addEventListener('input', e=>{
+      if(e.target.matches('#promptSearch')) renderPrompts(true);
     });
 
     function setLang(lang, btn){
@@ -360,12 +586,22 @@
       document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.remove('active'));
       btn.classList.add('active');
       document.documentElement.lang = lang;
+
       document.getElementById('bio-tr').classList.toggle('active', lang === 'tr');
       document.getElementById('bio-en').classList.toggle('active', lang === 'en');
-      document.querySelectorAll('[data-tr]').forEach(el=>{ el.textContent = el.getAttribute('data-' + lang); });
-      document.querySelectorAll('[data-placeholder-tr]').forEach(el=>{ el.placeholder = el.getAttribute('data-placeholder-' + lang); });
+
+      document.querySelectorAll('[data-tr]').forEach(el=>{
+        el.textContent = el.getAttribute('data-' + lang);
+      });
+
+      document.querySelectorAll('[data-placeholder-tr]').forEach(el=>{
+        el.placeholder = el.getAttribute('data-placeholder-' + lang);
+      });
+
       renderPrompts(false);
     }
+
+    window.addEventListener('DOMContentLoaded', ()=>renderPrompts(true));
   </script>
 </body>
 </html>
