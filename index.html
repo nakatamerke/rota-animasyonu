@@ -221,7 +221,7 @@
       <a href="#about" data-tr="Hakkımda" data-en="About">Hakkımda</a>
       <a href="#films" data-tr="AI Filmler" data-en="AI Films">AI Filmler</a>
       <a href="#prompts" data-tr="Prompt Kütüphanesi" data-en="Prompt Library">Prompt Kütüphanesi</a>
-      <a class="guide-link" href="https://drive.google.com/file/d/1lqzMxArah92vA_2jxORoFVb3f3iTOcD6/view?usp=drivesdk" target="_blank" rel="noopener" data-tr="Ücretsiz Rehber" data-en="Free Guide">Ücretsiz Rehber</a>
+      <a class="guide-link guide-download" href="https://drive.google.com/file/d/1lqzMxArah92vA_2jxORoFVb3f3iTOcD6/view?usp=drivesdk" target="_blank" rel="noopener" data-tr="Ücretsiz Rehber" data-en="Free Guide">Ücretsiz Rehber</a>
       <a href="#contact" data-tr="İletişim" data-en="Contact">İletişim</a>
 
       <div class="lang-switch">
@@ -239,7 +239,7 @@
         <div class="photo-guide-badge">
           <small data-tr="Yeni Yayında" data-en="Now Available">Yeni Yayında</small>
           <strong data-tr="Ücretsiz AI Film Rehberi" data-en="Free AI Film Guide">Ücretsiz AI Film Rehberi</strong>
-          <a class="btn gold" href="https://drive.google.com/file/d/1lqzMxArah92vA_2jxORoFVb3f3iTOcD6/view?usp=drivesdk" target="_blank" rel="noopener" data-tr="PDF'i İndir" data-en="Download PDF">PDF'i İndir</a>
+          <a class="btn gold guide-download" href="https://drive.google.com/file/d/1lqzMxArah92vA_2jxORoFVb3f3iTOcD6/view?usp=drivesdk" target="_blank" rel="noopener" data-tr="PDF'i İndir" data-en="Download PDF">PDF'i İndir</a>
         </div>
 
         <div class="photo-badge">
@@ -264,7 +264,7 @@
               <span>Kurgu</span>
               <span>Storytelling</span>
             </div>
-            <a class="btn gold" href="https://drive.google.com/file/d/1lqzMxArah92vA_2jxORoFVb3f3iTOcD6/view?usp=drivesdk" target="_blank" rel="noopener" data-tr="Ücretsiz PDF'i İndir" data-en="Download Free PDF">Ücretsiz PDF'i İndir</a>
+            <a class="btn gold guide-download" href="https://drive.google.com/file/d/1lqzMxArah92vA_2jxORoFVb3f3iTOcD6/view?usp=drivesdk" target="_blank" rel="noopener" data-tr="Ücretsiz PDF'i İndir" data-en="Download Free PDF">Ücretsiz PDF'i İndir</a>
           </div>
 
           <div class="eyebrow" data-tr="Medya Profesyoneli • AI Filmmaker" data-en="Media Professional • AI Filmmaker">Medya Profesyoneli • AI Filmmaker</div>
@@ -453,6 +453,15 @@
   </footer>
 
   <script>
+    const TR_GUIDE = "https://drive.google.com/file/d/1lqzMxArah92vA_2jxORoFVb3f3iTOcD6/view?usp=drivesdk";
+    const EN_GUIDE = "https://drive.google.com/file/d/1s8Yz9PC2-UFJLz40FAfb-d8fzuZ1pB4Y/view?usp=drivesdk";
+
+    function updateGuideLinks(lang){
+      document.querySelectorAll('.guide-download').forEach(link=>{
+        link.href = lang === 'en' ? EN_GUIDE : TR_GUIDE;
+      });
+    }
+
     const basePrompts = [
       {cat:'Camera', name:'Hero Arrival', desc:'Powerful entrance shot for characters and brand films.', prompt:'Epic cinematic hero arrival of [SUBJECT], low-angle camera slowly pushing forward, golden volumetric sunlight, atmospheric haze, anamorphic lens flare, ultra realistic texture, ARRI Alexa 65 look, premium cinematic color grade.'},
       {cat:'Camera', name:'Slow Push-In', desc:'Builds emotional pressure without cutting.', prompt:'Slow emotional push-in toward [SUBJECT], camera moving almost imperceptibly forward, shallow depth of field, subtle breathing motion, cinematic realism, increasing emotional intensity.'},
@@ -598,10 +607,14 @@
         el.placeholder = el.getAttribute('data-placeholder-' + lang);
       });
 
+      updateGuideLinks(lang);
       renderPrompts(false);
     }
 
-    window.addEventListener('DOMContentLoaded', ()=>renderPrompts(true));
+    window.addEventListener('DOMContentLoaded', ()=>{
+      updateGuideLinks(currentLang);
+      renderPrompts(true);
+    });
   </script>
 </body>
 </html>
